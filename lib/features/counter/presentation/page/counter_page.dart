@@ -1,6 +1,8 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tests/features/counter/presentation/cubit/cubit_cubit.dart';
+import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
+import 'package:tests/features/counter/presentation/widgets/counter_widget.dart';
 
 class CounterPage extends StatefulWidget {
   CounterPage({Key key, this.title}) : super(key: key);
@@ -12,39 +14,25 @@ class CounterPage extends StatefulWidget {
 }
 
 class _CounterPageState extends State<CounterPage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  @override
+  void initState() {
+    // TODO: implement initState
+    print('initstate');
+    super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    print('didchangedependecnied');
+    super.didChangeDependencies();
+  }
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    return BlocProvider(
+      create: (_) => CounterBloc(),
+      child: CounterWidget()
     );
   }
 }
