@@ -7,7 +7,7 @@ part 'counter_event.dart';
 part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  static const initialState = 40 ;
+  static const initialState = 0 ;
   CounterBloc() : super(CounterInitialState(counter: initialState));
 
   @override
@@ -22,10 +22,10 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   ) async* {
     if(event is IncrementCounterEvent) {
       print("counter is increase by ${event.counter}");
-      yield IncrementCounterState(counter: event.counter + 1);
+      yield IncrementCounterState(counter: state.counter + event.counter);
     } else if(event is DecrementCounterEvent) {
       print("counter is decrease by ${event.counter}");
-      yield DecrementCounterState(counter: event.counter - 1);
+      yield DecrementCounterState(counter: state.counter == 0 ? state.counter : state.counter  - event.counter);
     }
   }
 }

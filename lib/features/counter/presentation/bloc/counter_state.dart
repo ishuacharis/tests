@@ -1,10 +1,6 @@
 part of 'counter_bloc.dart';
 
 @immutable
-//abstract class CounterState {}
-
-//class CounterInitial extends CounterState {}
-
 abstract class CounterState extends Equatable {
   final int counter;
   const CounterState({this.counter});
@@ -22,7 +18,7 @@ abstract class CounterState extends Equatable {
 class CounterInitialState extends CounterState{
   final int counter;
 
-  const CounterInitialState({this.counter});
+  const CounterInitialState({this.counter}) : super(counter: counter);
 
   @override
   // TODO: implement props
@@ -45,7 +41,7 @@ class CounterInitialState extends CounterState{
 class IncrementCounterState extends CounterState{
   final int counter;
 
-  const IncrementCounterState({this.counter});
+  const IncrementCounterState({this.counter}) : super(counter: counter);
 
   @override
   // TODO: implement props
@@ -67,7 +63,7 @@ class IncrementCounterState extends CounterState{
 class DecrementCounterState extends CounterState{
   final int counter;
 
-  const DecrementCounterState({this.counter});
+  const DecrementCounterState({this.counter}) : super(counter: counter);
 
   @override
   // TODO: implement props
