@@ -2,13 +2,33 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:tests/core/constants/enums/connection_type_enum.dart';
+import 'package:tests/core/shared/internet/bloc/internet_bloc.dart';
+
 
 part 'counter_event.dart';
 part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  static const initialState = 0 ;
-  CounterBloc() : super(CounterInitialState(counter: initialState, wasIncremented: false));
+  final InternetBloc internetBloc;
+  StreamSubscription internetStreamSubscription;
+  static const initialState = 22 ;
+  CounterBloc({this.internetBloc}) : super(CounterInitialState(counter: initialState, wasIncremented: false)){
+      internetStreamSubscription = internetBloc.listen((internetState) {
+        monitorCounterValue(internetState);
+      }
+      );
+  }
+
+  void monitorCounterValue(InternetBlocState internetState) {
+    if (internetState is InternetConnectedState &&
+        internetState.connectionType == ConnectionType.Wifi) {
+       add(IncrementCounterEvent(counter: 1));
+    } else if (internetState is InternetConnectedState &&
+        internetState.connectionType == ConnectionType.Mobile) {
+      add(DecrementCounterEvent(counter: 1));
+    }
+  }
 
   @override
   void onTransition(Transition<CounterEvent, CounterState> transition) {
@@ -28,4 +48,10 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       yield DecrementCounterState(counter: state.counter == 0 ? state.counter : state.counter  - event.counter, wasIncremented: false);
     }
   }
+
+  Future<void> dipose(){
+    internetStreamSubscription.cancel();
+    super.close();
+  }
+
 }

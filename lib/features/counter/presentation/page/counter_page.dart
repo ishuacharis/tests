@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tests/features/counter/presentation/cubit/cubit_cubit.dart';
+import 'package:tests/features/counter/presentation/cubit/counter_cubit.dart';
 import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
 import 'package:tests/features/counter/presentation/widgets/counter_widget.dart';
 
@@ -31,7 +31,7 @@ class _CounterPageState extends State<CounterPage> {
   @override
   Widget build(BuildContext context) {
     // return BlocProvider(
-    //   create: (_) => CounterBloc(),
+    //   create: (_) => CounterCubit(),
     //   child: CounterWidget()
     // );
     return CounterWidget();

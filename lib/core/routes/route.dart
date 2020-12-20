@@ -8,22 +8,16 @@ import 'package:tests/features/counter/presentation/page/counter_aux_page.dart';
 import 'package:tests/features/counter/presentation/page/counter_page.dart';
 
 class GeneratedRoute {
-  static final CounterBloc _counterBloc = CounterBloc();
 
   static Route<dynamic> onGeneratedRoute(RouteSettings routeSettings) {
     final args = routeSettings.arguments;
     switch(routeSettings.name) {
       case counter_page:
-        return MaterialPageRoute(builder: (_) => BlocProvider.value(
-          value: _counterBloc,
-          child: CounterPage(title: args,),
-        )
-        );
+        return MaterialPageRoute(builder: (_) =>CounterPage(title: args,),);
+        break;
       case counter_aux:
-        return MaterialPageRoute(builder: (_) =>  BlocProvider.value(
-          value: _counterBloc,
-          child: CounterAuxPage(),
-        ));
+        return MaterialPageRoute(builder: (_) =>  CounterAuxPage(),);
+        break;
       default:
         return _errorRoute();
     }
@@ -40,7 +34,4 @@ class GeneratedRoute {
     );
   }
 
-  static void dispose() {
-    _counterBloc.close();
-  }
 }

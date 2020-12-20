@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:tests/core/constants/enums/connection_type_enum.dart';
 import 'package:tests/core/routes/routes.dart';
-import 'package:tests/features/counter/data/model/counter_model.dart';
+import 'package:tests/core/shared/internet/bloc/internet_bloc.dart';
+import 'package:tests/core/shared/internet/cubit/internet_cubit.dart';
 import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
-import 'package:tests/features/counter/presentation/cubit/cubit_cubit.dart';
-import 'package:tests/features/counter/presentation/page/counter_aux_page.dart';
-
+import 'package:tests/features/counter/presentation/cubit/counter_cubit.dart';
 
 class CounterWidget extends StatelessWidget {
   @override
@@ -21,6 +21,24 @@ class CounterWidget extends StatelessWidget {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
+            ),
+            BlocBuilder<InternetCubit,InternetState>(
+              builder: (context, state) {
+                if(state is InternetConnected && state.connectionType == ConnectionType.Wifi){
+                  return Text("InternetCubit wifi");
+                } else if(state is InternetConnected && state.connectionType == ConnectionType.Mobile){
+                  return Text("InternetCubit Phone");
+                }
+                return CircularProgressIndicator();
+              },
+            ),
+            BlocBuilder<CounterCubit,CounterCubitState>(
+              builder: (context, state) {
+                return Text(
+                  'CounterCubit ${state.counter}',
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
             ),
             BlocConsumer<CounterBloc,CounterState>(
               listener: (context, state) {
@@ -56,7 +74,26 @@ class CounterWidget extends StatelessWidget {
               Navigator.of(context).pushNamed(counter_aux);
             },
                 child: Text("Navigate")
-            )
+            ),
+
+            BlocBuilder<InternetBloc,InternetBlocState>(
+              builder: (context, state) {
+                if(state is InternetBlocState && state.connectionType == ConnectionType.Wifi){
+                  return Text("InternetBloc  wifi");
+                } else if(state is InternetBlocState && state.connectionType == ConnectionType.Mobile){
+                  return Text("InternetBloc Phone");
+                }
+                return CircularProgressIndicator();
+              },
+            ),
+            BlocBuilder<CounterBloc,CounterState>(
+              builder: (context, state) {
+                return Text(
+                  'CounterBloc ${state.counter}',
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
+            ),
           ],
         ),
       ),

@@ -32,6 +32,9 @@ dependencies:
   rxdart: ^0.25.0
   google_fonts: ^1.1.1
   flutter_speed_dial: ^1.2.5
+  connectivity_plus: ^0.7.1
+  get_it: ^5.0.3
+  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:
