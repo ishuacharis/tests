@@ -30,9 +30,10 @@ class _CounterPageState extends State<CounterPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CounterBloc(),
-      child: CounterWidget()
-    );
+    // return BlocProvider(
+    //   create: (_) => CounterBloc(),
+    //   child: CounterWidget()
+    // );
+    return CounterWidget();
   }
 }

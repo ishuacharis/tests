@@ -11,4 +11,18 @@ class CounterObserver extends BlocObserver {
 
     print(change.currentState);
   }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+
+    print("${bloc.runtimeType} $transition");
+    super.onTransition(bloc, transition);
+  }
+
+
+  @override
+  void onError(Cubit cubit, Object error, StackTrace stackTrace) {
+    print("${cubit.runtimeType} ");
+    super.onError(cubit, error, stackTrace);
+  }
 }

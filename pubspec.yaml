@@ -29,6 +29,8 @@ dependencies:
 
   flutter_bloc: ^6.1.1
   equatable: ^1.2.5
+  rxdart: ^0.25.0
+  google_fonts: ^1.1.1
   flutter_speed_dial: ^1.2.5
 
 dev_dependencies:
