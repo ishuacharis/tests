@@ -71,7 +71,7 @@ class CounterWidget extends StatelessWidget {
               child: Text("bloc listens"),
             ),
             ElevatedButton(onPressed: (){
-              Navigator.of(context).pushNamed(counter_aux);
+              Navigator.of(context).pushNamed(counter_aux_page);
             },
                 child: Text("Navigate")
             ),

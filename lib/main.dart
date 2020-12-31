@@ -20,21 +20,32 @@ void main() {
   runApp(MyApp(connectivity: Connectivity(),));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final Connectivity connectivity;
 
   const MyApp({Key key, this.connectivity}) : super(key: key);
 
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    GeneratedRoute.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
           BlocProvider<InternetCubit>(
-              create: (context) => InternetCubit(connectivity: connectivity)
+              create: (context) => InternetCubit(connectivity: widget.connectivity)
           ),
           BlocProvider<InternetBloc>(
-              create: (context) => InternetBloc(connectivity: connectivity)
+              create: (context) => InternetBloc(connectivity: widget.connectivity)
           ),
           BlocProvider<CounterCubit>(
               create: (context) => CounterCubit(internetCubit: context.read<InternetCubit>())
