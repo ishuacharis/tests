@@ -8,6 +8,7 @@ import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
 import 'package:tests/features/counter/presentation/page/counter_aux_page.dart';
 import 'package:tests/features/counter/presentation/page/counter_page.dart';
 import 'package:tests/features/todo/presentation/bloc/todo_bloc.dart';
+import 'package:tests/features/todo/presentation/pages/add_todo_page.dart';
 import 'package:tests/features/todo/presentation/pages/todo_page.dart';
 
 class GeneratedRoute {
@@ -30,6 +31,13 @@ class GeneratedRoute {
         return MaterialPageRoute(builder: (_) => BlocProvider.value(
           value: _todoBloc,
           child: TodoPage(),
+        ));
+        break;
+
+      case add_todo_page:
+        return MaterialPageRoute(builder: (_) => BlocProvider.value(
+          value: _todoBloc,
+          child: AddTodoPage(title: args),
         ));
         break;
       default:
