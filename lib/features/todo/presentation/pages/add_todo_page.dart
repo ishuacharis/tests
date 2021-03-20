@@ -21,6 +21,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
         centerTitle: true,
       ),
       body: Container(
+        color: Colors.black87,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

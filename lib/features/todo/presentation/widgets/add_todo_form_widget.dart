@@ -36,13 +36,18 @@ class _AddTodoFormWidgetState extends State<AddTodoFormWidget> {
                       ),
                     ),
                   ),
-                  Container(
-                    child: ElevatedButton(
-                      child: Text("Add"),
-                      onPressed: () {
-                       BlocProvider.of<TodoBloc>(context).add(AddTodoEvent(todo: TodoModel(id: Uuid().v4(), name: nameController.text)));
-                      },
-                    ),
+                  BlocBuilder<TodoBloc, TodoState>(
+                      builder: (context,state) =>
+                        Container(
+                          child: state == TodoLoading() ? CircularProgressIndicator() :  ElevatedButton(
+                            child: Text("Add"),
+                            onPressed: () {
+                              BlocProvider.of<TodoBloc>(context).add(AddTodoEvent(todo: TodoModel(id: Uuid().v4(), name: nameController.text)));
+                              nameController.text = '';
+                              _form.currentState.reset();
+                            },
+                          ),
+                        )
                   )
                 ],
               ),

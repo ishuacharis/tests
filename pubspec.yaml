@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,18 +27,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
 
-  flutter_bloc: ^6.1.1
-  equatable: ^1.2.5
-  rxdart: ^0.25.0
-  google_fonts: ^1.1.1
+  flutter_bloc: ^7.0.0
+  equatable: ^2.0.0
+  rxdart: ^0.26.0
+  google_fonts: ^2.0.0
   flutter_speed_dial: ^1.2.5
-  connectivity_plus: ^0.7.1
-  get_it: ^5.0.3
-  shared_preferences: ^0.5.12+4
-  hydrated_bloc: ^6.1.0
-  path_provider: ^1.6.24
-  hive: ^1.4.4+1
-  uuid: ^2.2.2
+  connectivity_plus: ^1.0.0
+  get_it: ^6.0.0
+  shared_preferences: ^2.0.5
+  hydrated_bloc: ^7.0.0
+  path_provider: ^2.0.1
+  hive: ^2.0.0
+  uuid: ^3.0.1
 
 dev_dependencies:
   flutter_test:

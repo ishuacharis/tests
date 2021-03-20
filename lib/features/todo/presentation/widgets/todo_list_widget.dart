@@ -8,12 +8,19 @@ class TodoListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TodoBloc,TodoState>(
         builder: (context, state) {
-            return  Column(
+            return state == TodoLoading() ? Center(child: CircularProgressIndicator()) : Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: state.todos.map((TodoModel todo) => Container(
                 child: Row(
                   children: [
-                    Text(todo.id.toString()),Text(todo.name)
+                    Checkbox(
+                        
+                        value: todo.completed,
+                        tristate: false,
+                        onChanged: (value) {}
+                    ),
+                    SizedBox(width: 20,),
+                    Expanded(child: Text(todo.name, style: TextStyle(color: Colors.white, fontSize: 22.0),))
                   ],
                 ),
               )).toList(),

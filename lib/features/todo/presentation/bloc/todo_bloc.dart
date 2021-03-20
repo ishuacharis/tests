@@ -32,10 +32,13 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   }
 
   Stream<TodoState> _mapAddTodoToState(AddTodoEvent event) async* {
-    if(state is TodoLoaded) {
+      yield TodoLoading();
+      // Future.delayed(const Duration(seconds: 10), () async*{
+      //
+      // });
       final List<TodoModel> updatedTodos  = List.from(state.todos)..add(event.todo);
       yield TodoLoaded(todos: updatedTodos);
-    }
+
   }
 
   Stream<TodoState> _mapDeleteTodoToState(DeleteTodoEvent event) async* {
