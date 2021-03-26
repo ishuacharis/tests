@@ -3,7 +3,7 @@ part of 'counter_bloc.dart';
 @immutable
 abstract class CounterEvent extends Equatable{
   final int  counter;
-  const CounterEvent({this.counter});
+  const CounterEvent({required this.counter});
 
   @override
   List<Object> get props => [];
@@ -12,7 +12,7 @@ abstract class CounterEvent extends Equatable{
 
 class IncrementCounterEvent extends CounterEvent {
   final int counter;
-  const IncrementCounterEvent({this.counter}) : super(counter: counter);
+  const IncrementCounterEvent({required this.counter}) : super(counter: counter);
 
   @override
   List<Object> get props => [counter];
@@ -20,7 +20,7 @@ class IncrementCounterEvent extends CounterEvent {
 
 class DecrementCounterEvent extends CounterEvent {
   final int counter;
-  const DecrementCounterEvent({this.counter}) : super(counter: counter);
+  const DecrementCounterEvent({ required this.counter}) : super(counter: counter);
 
   @override
   List<Object> get props => [counter];

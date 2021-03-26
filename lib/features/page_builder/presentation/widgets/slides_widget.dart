@@ -6,7 +6,7 @@ class SlidesWidget extends StatelessWidget {
   final PageController controller;
   final Function(int i) pageChanged;
 
-  const SlidesWidget({this.controller, this.pageChanged});
+  const SlidesWidget({required this.controller, required this.pageChanged});
 
 
   @override

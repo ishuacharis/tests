@@ -7,6 +7,8 @@ import 'package:tests/core/routes/routes.dart';
 import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
 import 'package:tests/features/counter/presentation/page/counter_aux_page.dart';
 import 'package:tests/features/counter/presentation/page/counter_page.dart';
+import 'package:tests/features/page_builder/presentation/page/get_started_page.dart';
+import 'package:tests/features/search/presentation/pages/selection_page.dart';
 import 'package:tests/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:tests/features/todo/presentation/pages/add_todo_page.dart';
 import 'package:tests/features/todo/presentation/pages/todo_page.dart';
@@ -20,26 +22,26 @@ class GeneratedRoute {
     switch(routeSettings.name) {
       case home_page:
         return MaterialPageRoute(builder: (_) => HomePage(title: "Home",),);
-        break;
+      case selection_page:
+        return MaterialPageRoute(builder: (_) => SelectionPage(title: "Selection Page",),);
+      case page_builder:
+        return MaterialPageRoute(builder: (_) => GetStartedPage(title: "Get Started",),);
       case counter_page:
-        return MaterialPageRoute(builder: (_) => CounterPage(title: args,),);
-        break;
+        return MaterialPageRoute(builder: (_) => CounterPage(title: args.toString(),),);
       case counter_aux_page:
         return MaterialPageRoute(builder: (_) =>  CounterAuxPage(),);
-        break;
       case todo_page:
         return MaterialPageRoute(builder: (_) => BlocProvider.value(
           value: _todoBloc,
           child: TodoPage(),
         ));
-        break;
 
       case add_todo_page:
         return MaterialPageRoute(builder: (_) => BlocProvider.value(
           value: _todoBloc,
-          child: AddTodoPage(title: args),
+          child: AddTodoPage(title: args.toString()),
         ));
-        break;
+
       default:
         return _errorRoute();
     }

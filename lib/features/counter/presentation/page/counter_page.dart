@@ -5,7 +5,7 @@ import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
 import 'package:tests/features/counter/presentation/widgets/counter_widget.dart';
 
 class CounterPage extends StatefulWidget {
-  CounterPage({Key key, this.title}) : super(key: key);
+  CounterPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

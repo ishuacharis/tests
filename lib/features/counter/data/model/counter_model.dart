@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 class CounterModel extends Equatable{
   final int counter;
 
-  const CounterModel({this.counter});
+  const CounterModel({required this.counter});
 
   @override
   // TODO: implement props

@@ -6,7 +6,7 @@ import 'package:tests/features/todo/presentation/widgets/todo_list_widget.dart';
 class AddTodoPage extends StatefulWidget {
   final String title;
 
-  AddTodoPage({this.title});
+  AddTodoPage({required this.title});
 
   @override
   _AddTodoPageState createState() => _AddTodoPageState();

@@ -5,7 +5,7 @@ import 'package:tests/features/page_builder/data/models/slide_model.dart';
 class SlideDot extends StatelessWidget {
   final int currenPage;
 
-  const SlideDot({this.currenPage});
+  const SlideDot({required this.currenPage});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class SlideDot extends StatelessWidget {
     );
   }
 
-  Widget _sliderDot(BuildContext ctx, {bool isActive}) {
+  Widget _sliderDot(BuildContext ctx, {required bool isActive}) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 150),
       margin: const EdgeInsets.symmetric(horizontal: 10.0),

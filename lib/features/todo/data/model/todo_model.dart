@@ -6,9 +6,9 @@ class TodoModel extends Equatable {
   final String id;
   final String name;
   final bool completed;
-  const TodoModel({this.id, this.name, this.completed = false});
+  const TodoModel({required this.id, required this.name, this.completed = false});
 
-  TodoModel copyWith({String id, String name, bool completed}) {
+  TodoModel copyWith({String? id, String? name, bool? completed}) {
     return TodoModel(
       name: name?? this.name,
       id: id?? this.id,

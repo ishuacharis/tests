@@ -20,7 +20,6 @@ class SearchPage extends StatelessWidget {
                     border: OutlineInputBorder()
                 ),
                 onChanged: (text) => {
-                  print(text)
                 },
               ),
               ElevatedButton(onPressed: (){

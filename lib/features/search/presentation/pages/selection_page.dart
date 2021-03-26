@@ -3,14 +3,14 @@ import 'package:tests/features/search/presentation/pages/search_page.dart';
 
 class SelectionPage extends StatefulWidget {
   final String title;
-  SelectionPage({this.title});
+  SelectionPage({required this.title});
 
   @override
   _SelectionPageState createState() => _SelectionPageState();
 }
 
 class _SelectionPageState extends State<SelectionPage> {
-    String text;
+    String? text;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +35,7 @@ class _SelectionPageState extends State<SelectionPage> {
 
               },
             ),
-            if(text != null) Text(text)
+            Text(text?? " ")
           ],
         )
       ),

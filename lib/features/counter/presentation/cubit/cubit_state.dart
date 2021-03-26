@@ -2,7 +2,7 @@ part of 'counter_cubit.dart';
 
 abstract class CounterCubitState extends Equatable {
   final int counter;
-  const CounterCubitState({this.counter});
+  const CounterCubitState({required this.counter});
 
   @override
   // TODO: implement props
@@ -16,7 +16,7 @@ abstract class CounterCubitState extends Equatable {
 class CounterInitialState extends CounterCubitState{
   final int counter;
 
-  const CounterInitialState({this.counter}): super(counter: counter);
+  const CounterInitialState({required this.counter}): super(counter: counter);
 
   @override
   // TODO: implement props
@@ -31,7 +31,7 @@ class CounterInitialState extends CounterCubitState{
 class CounterIncrementedState extends CounterCubitState{
   final int counter;
 
-  const CounterIncrementedState({this.counter}) : super(counter: counter);
+  const CounterIncrementedState({required this.counter}) : super(counter: counter);
 
   @override
   // TODO: implement props
@@ -46,7 +46,7 @@ class CounterIncrementedState extends CounterCubitState{
 class CounterDecrementedState extends CounterCubitState{
   final int counter;
 
-  const CounterDecrementedState({this.counter});
+  const CounterDecrementedState({required this.counter}): super(counter: counter);
 
   @override
   // TODO: implement props

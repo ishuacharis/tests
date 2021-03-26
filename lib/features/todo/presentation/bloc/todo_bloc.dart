@@ -32,7 +32,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   }
 
   Stream<TodoState> _mapAddTodoToState(AddTodoEvent event) async* {
-      yield TodoLoading();
+      yield TodoLoading(todos: []);
       // Future.delayed(const Duration(seconds: 10), () async*{
       //
       // });

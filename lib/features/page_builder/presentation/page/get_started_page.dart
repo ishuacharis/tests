@@ -6,7 +6,7 @@ import 'package:tests/features/page_builder/presentation/widgets/top_widget.dart
 class GetStartedPage extends StatelessWidget {
   final String title;
 
-  GetStartedPage({this.title});
+  GetStartedPage({required this.title});
 
   @override
   Widget build(BuildContext context) {

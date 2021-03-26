@@ -3,7 +3,7 @@ import 'package:tests/features/page_builder/data/models/slide_model.dart';
 
 class SingleSlide extends StatelessWidget {
   final int index;
-  const SingleSlide({this.index});
+  const SingleSlide({required this.index});
   @override
   Widget build(BuildContext context) {
     return Column(

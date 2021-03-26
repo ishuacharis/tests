@@ -11,9 +11,9 @@ part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   final InternetBloc internetBloc;
-  StreamSubscription internetStreamSubscription;
+  late StreamSubscription internetStreamSubscription;
   static const initialState = 22 ;
-  CounterBloc({this.internetBloc}) : super(CounterInitialState(counter: initialState, wasIncremented: false)){
+  CounterBloc({required this.internetBloc}) : super(CounterInitialState(counter: initialState, wasIncremented: false)){
       internetStreamSubscription = internetBloc.listen((internetState) {
         monitorCounterValue(internetState);
       }
@@ -49,7 +49,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     }
   }
 
-  Future<void> dipose(){
+  Future<void> dispose() async {
     internetStreamSubscription.cancel();
     super.close();
   }

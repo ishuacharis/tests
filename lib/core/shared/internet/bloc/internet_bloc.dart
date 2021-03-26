@@ -11,8 +11,8 @@ part 'internet_state.dart';
 
 class InternetBloc extends Bloc<InternetEvent, InternetBlocState> {
   final Connectivity connectivity;
-  StreamSubscription connectivityStreamSubscription;
-  InternetBloc({this.connectivity}) : super(InternetLoadingState()) {
+  late StreamSubscription connectivityStreamSubscription;
+  InternetBloc({required this.connectivity}) : super(InternetLoadingState(connectionType: ConnectionType.None)) {
     connectivityStreamSubscription = connectivity.onConnectivityChanged.listen((ConnectivityResult connectivityResult) {
       monitorInternetConnection(connectivityResult);
     });
@@ -24,7 +24,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetBlocState> {
     } else if(connectivityResult == ConnectivityResult.mobile) {
       add(IncrementInternetEvent(connectionType: ConnectionType.Mobile));
     } else if(connectivityResult == ConnectivityResult.none){
-      add(DecrementInternetEvent());
+      add(DecrementInternetEvent(connectionType: ConnectionType.None));
     }
   }
 
@@ -37,7 +37,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetBlocState> {
     } else if(event is DecrementInternetEvent) {
       yield InternetConnectedState(connectionType: event.connectionType);
     } else{
-      yield InternetDisconnectedState();
+      yield InternetDisconnectedState(connectionType: event.connectionType);
     }
   }
   @override

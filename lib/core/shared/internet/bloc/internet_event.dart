@@ -2,7 +2,7 @@ part of 'internet_bloc.dart';
 
 abstract class InternetEvent extends Equatable {
   final ConnectionType connectionType;
-  const InternetEvent({this.connectionType});
+  const InternetEvent({required this.connectionType});
 
   List<Object> get props => [connectionType];
 }
@@ -10,7 +10,7 @@ abstract class InternetEvent extends Equatable {
 
 class IncrementInternetEvent extends InternetEvent {
   final ConnectionType connectionType;
-  const IncrementInternetEvent({this.connectionType});
+  const IncrementInternetEvent({required this.connectionType}) : super(connectionType: connectionType);
 
   List<Object> get props => [connectionType];
 }
@@ -18,7 +18,7 @@ class IncrementInternetEvent extends InternetEvent {
 
 class  DecrementInternetEvent extends InternetEvent {
   final ConnectionType connectionType;
-  const DecrementInternetEvent({this.connectionType});
+  const DecrementInternetEvent({required this.connectionType}) : super(connectionType: connectionType);
 
   List<Object> get props => [connectionType];
 }

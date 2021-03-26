@@ -8,7 +8,7 @@ class TodoListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TodoBloc,TodoState>(
         builder: (context, state) {
-            return state == TodoLoading() ? Center(child: CircularProgressIndicator()) : Column(
+            return state == TodoLoading(todos: []) ? Center(child: CircularProgressIndicator()) : Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: state.todos.map((TodoModel todo) => Container(
                 child: Row(

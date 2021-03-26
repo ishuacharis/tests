@@ -4,7 +4,7 @@ class Slide {
   final String title;
   final String description;
 
-  const Slide({this.imgUrl, this.title, this.description});
+  const Slide({required this.imgUrl, required this.title, required this.description});
 }
 
 final List<Slide> slides = [
