@@ -42,3 +42,4 @@ app.*.map.json
 
 lib/rand_gen.dart
 lib/file_one.dart
+lib/file_two.dart

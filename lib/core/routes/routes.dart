@@ -5,4 +5,5 @@ const add_todo_page  = "add_todo_page";
 const home_page  ="home_page";
 const selection_page = "selection_page";
 const page_builder = "page_builder";
-const initial_route =  home_page;
+const hive_page =  "hive_page";
+const initial_route =  hive_page;

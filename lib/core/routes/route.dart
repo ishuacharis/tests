@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tests/core/pages/hive_page.dart';
 import 'package:tests/core/pages/home_page.dart';
 import 'package:tests/core/routes/routes.dart';
 import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
@@ -26,6 +27,8 @@ class GeneratedRoute {
         return MaterialPageRoute(builder: (_) => SelectionPage(title: "Selection Page",),);
       case page_builder:
         return MaterialPageRoute(builder: (_) => GetStartedPage(title: "Get Started",),);
+      case hive_page:
+        return MaterialPageRoute(builder: (_) => HiveApp());
       case counter_page:
         return MaterialPageRoute(builder: (_) => CounterPage(title: args.toString(),),);
       case counter_aux_page:
