@@ -33,13 +33,19 @@ class CounterWidget extends StatelessWidget {
             BlocConsumer<CounterBloc,CounterState>(
               listener: (context, state) {
                if(state.wasIncremented == true){
-                 Scaffold.of(context).showSnackBar(
-                     SnackBar(content: Text("incremented"), duration: const Duration(milliseconds: 3000),)
+                 final _snackBar  = SnackBar(
+                     content: Text("incremented"),
+                   duration:  const Duration(milliseconds: 3000),
+
                  );
+                  ScaffoldMessenger.of(context).showSnackBar(_snackBar);
                } else if(state.wasIncremented == false) {
-                 Scaffold.of(context).showSnackBar(
-                     SnackBar(content: Text("decremented"), duration: const Duration(milliseconds: 3000),)
+                 final _snackBar  = SnackBar(
+                   content: Text("decremented"),
+                   duration:  const Duration(milliseconds: 3000),
+
                  );
+                 ScaffoldMessenger.of(context).showSnackBar(_snackBar);
                }
               },
               builder: (context, state) {
