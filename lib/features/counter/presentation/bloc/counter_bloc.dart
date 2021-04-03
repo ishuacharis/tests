@@ -12,7 +12,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   late StreamSubscription internetStreamSubscription;
   static const initialState = 22 ;
   CounterBloc({required this.internetBloc}) : super(CounterInitialState(counter: initialState, wasIncremented: false)){
-      internetStreamSubscription = internetBloc.listen((internetState) {
+      internetStreamSubscription = internetBloc.stream.listen((internetState) {
         monitorCounterValue(internetState);
       });
   }

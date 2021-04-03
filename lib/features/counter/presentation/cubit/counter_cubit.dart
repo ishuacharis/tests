@@ -10,7 +10,7 @@ class CounterCubit extends Cubit<CounterCubitState> {
   late StreamSubscription internetStreamSubscription;
 
   CounterCubit({required this.internetCubit}) : super(CounterInitialState(counter: 20)) {
-    internetStreamSubscription = internetCubit.listen((internetState) {
+    internetStreamSubscription = internetCubit.stream.listen((internetState) {
       if (internetState is InternetConnected &&
           internetState.connectionType == ConnectionType.Wifi) {
         increment();
