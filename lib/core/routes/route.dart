@@ -1,18 +1,18 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tests/core/pages/hive_page.dart';
-import 'package:tests/core/pages/home_page.dart';
-import 'package:tests/core/routes/routes.dart';
+import '../pages/hive_page.dart';
+import '../pages/home_page.dart';
+import 'routes.dart';
 import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
-import 'package:tests/features/counter/presentation/page/counter_aux_page.dart';
-import 'package:tests/features/counter/presentation/page/counter_page.dart';
-import 'package:tests/features/page_builder/presentation/page/get_started_page.dart';
-import 'package:tests/features/search/presentation/pages/selection_page.dart';
-import 'package:tests/features/todo/presentation/bloc/todo_bloc.dart';
-import 'package:tests/features/todo/presentation/pages/add_todo_page.dart';
-import 'package:tests/features/todo/presentation/pages/todo_page.dart';
+import '../../features/counter/presentation/page/counter_aux_page.dart';
+import '../../features/counter/presentation/page/counter_bloc_page.dart';
+import '../../features/counter/presentation/page/counter_page.dart';
+import '../../features/page_builder/presentation/page/get_started_page.dart';
+import '../../features/search/presentation/pages/selection_page.dart';
+import '../../features//todo/presentation/bloc/todo_bloc.dart';
+import '../../features/todo/presentation/pages/add_todo_page.dart';
+import '../../features/todo/presentation/pages/todo_page.dart';
 
 class GeneratedRoute {
 
@@ -31,6 +31,8 @@ class GeneratedRoute {
         return MaterialPageRoute(builder: (_) => HiveApp());
       case counter_page:
         return MaterialPageRoute(builder: (_) => CounterPage(title: args.toString(),),);
+      case counter_bloc_page:
+        return MaterialPageRoute(builder: (_) => CounterBlocPage());
       case counter_aux_page:
         return MaterialPageRoute(builder: (_) =>  CounterAuxPage(),);
       case todo_page:

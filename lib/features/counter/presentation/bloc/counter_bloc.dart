@@ -2,10 +2,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:tests/core/constants/enums/connection_type_enum.dart';
-import 'package:tests/core/shared/internet/bloc/internet_bloc.dart';
-
-
+import '../../../../core/constants/enums/connection_type_enum.dart';
+import '../../../../core/shared/internet/bloc/internet_bloc.dart';
 part 'counter_event.dart';
 part 'counter_state.dart';
 
@@ -16,8 +14,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc({required this.internetBloc}) : super(CounterInitialState(counter: initialState, wasIncremented: false)){
       internetStreamSubscription = internetBloc.listen((internetState) {
         monitorCounterValue(internetState);
-      }
-      );
+      });
   }
 
   void monitorCounterValue(InternetBlocState internetState) {

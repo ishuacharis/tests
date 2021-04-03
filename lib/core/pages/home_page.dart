@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tests/core/routes/routes.dart';
+import '../routes/routes.dart';
 
 class HomePage extends StatelessWidget {
   final String title;
@@ -28,7 +28,19 @@ class HomePage extends StatelessWidget {
                     Navigator.of(context).pushNamed(counter_page);
                   },
                   child: Text("Counter view")
-              )
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(counter_bloc_page);
+                  },
+                  child: Text("Counter bloc")
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(counter_aux_page);
+                  },
+                  child: Text("Counter Stream")
+              ),
             ],
           ),
         ),

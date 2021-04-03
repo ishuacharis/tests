@@ -4,7 +4,7 @@ part of 'counter_bloc.dart';
 abstract class CounterState extends Equatable {
   final int counter;
   final bool wasIncremented;
-  const CounterState({required this.counter, required this.wasIncremented});
+  const CounterState({required this.counter,  this.wasIncremented = true });
 
   @override
   // TODO: implement props
@@ -19,7 +19,8 @@ abstract class CounterState extends Equatable {
 class CounterInitialState extends CounterState{
   final int counter;
   final bool wasIncremented;
-  const CounterInitialState({required this.counter, required this.wasIncremented}) : super(counter: counter, wasIncremented: wasIncremented);
+  const CounterInitialState({required this.counter, required this.wasIncremented})
+      : super(counter: counter, wasIncremented: wasIncremented);
 
   @override
   // TODO: implement props
@@ -42,7 +43,8 @@ class CounterInitialState extends CounterState{
 class IncrementCounterState extends CounterState{
   final int counter;
   final bool wasIncremented;
-  const IncrementCounterState({required this.counter, required this.wasIncremented}) : super(counter: counter, wasIncremented: wasIncremented);
+  const IncrementCounterState({required this.counter, required this.wasIncremented})
+      : super(counter: counter, wasIncremented: wasIncremented);
 
   @override
   // TODO: implement props

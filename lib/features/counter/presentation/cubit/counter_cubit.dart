@@ -1,11 +1,8 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tests/core/constants/enums/connection_type_enum.dart';
-import 'package:tests/core/shared/internet/cubit/internet_cubit.dart';
-
-
+import '../../../../core/constants/enums/connection_type_enum.dart';
+import '../../../../core/shared/internet/cubit/internet_cubit.dart';
 part 'cubit_state.dart';
 
 class CounterCubit extends Cubit<CounterCubitState> {

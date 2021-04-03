@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:tests/core/constants/enums/connection_type_enum.dart';
-import 'package:tests/core/routes/routes.dart';
-import 'package:tests/core/shared/internet/bloc/internet_bloc.dart';
-import 'package:tests/core/shared/internet/cubit/internet_cubit.dart';
-import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
-import 'package:tests/features/counter/presentation/cubit/counter_cubit.dart';
+import '../../../../core/constants/enums/connection_type_enum.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../../core/shared/internet/bloc/internet_bloc.dart';
+import '../../../../core/shared/internet/cubit/internet_cubit.dart';
+import '../bloc/counter_bloc.dart';
+
 
 class CounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Counter"),
+        title: Text("Counter Stream"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
             BlocBuilder<InternetCubit,InternetState>(
               builder: (context, state) {
                 if(state is InternetConnected && state.connectionType == ConnectionType.Wifi){
@@ -32,14 +29,7 @@ class CounterWidget extends StatelessWidget {
                 return CircularProgressIndicator();
               },
             ),
-            BlocBuilder<CounterCubit,CounterCubitState>(
-              builder: (context, state) {
-                return Text(
-                  'CounterCubit ${state.counter}',
-                  style: Theme.of(context).textTheme.headline4,
-                );
-              },
-            ),
+
             BlocConsumer<CounterBloc,CounterState>(
               listener: (context, state) {
                if(state.wasIncremented == true){
@@ -58,9 +48,6 @@ class CounterWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
-            ),
-            BlocBuilder<CounterBloc, CounterState>(
-                builder: (context,state) => Text("bloc builder ${state.counter}")
             ),
             BlocListener<CounterBloc, CounterState>(
                 listener: (context,state){
@@ -98,7 +85,7 @@ class CounterWidget extends StatelessWidget {
         ),
       ),
 
-      floatingActionButton: buildSpeedDial(context), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: buildSpeedDial(context),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
@@ -109,9 +96,9 @@ class CounterWidget extends StatelessWidget {
       closeManually: true,
       children: [
         SpeedDialChild(
-          child: Icon(Icons.add),
-          onTap: () => BlocProvider.of<CounterBloc>(context).add(IncrementCounterEvent(counter: 1)),
-          label: 'Add'
+            child: Icon(Icons.add),
+            onTap: () => BlocProvider.of<CounterBloc>(context).add(IncrementCounterEvent(counter: 1)),
+            label: 'Add'
         ),
         SpeedDialChild(
             child: Icon(Icons.remove),
