@@ -9,10 +9,7 @@ import 'package:tests/features/counter/presentation/cubit/counter_cubit.dart';
 class CounterBlocPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (_) => CounterBloc(internetBloc: context.read<InternetBloc>()),
-        child: CountBlocViewWidget(),
-    );
+    return  CountBlocViewWidget();
   }
 
 

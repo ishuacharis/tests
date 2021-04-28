@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tests/core/constants/enums/connection_type_enum.dart';
+import '../../../../core/constants/enums/connection_type_enum.dart';
 
 part 'internet_state.dart';
 

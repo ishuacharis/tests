@@ -1,8 +1,8 @@
 part of 'people_bloc.dart';
 
 abstract class PeopleState extends Equatable {
-  final People? people;
-  const PeopleState({this.people});
+
+  const PeopleState();
   
   @override
   List<Object> get props => [];
@@ -18,7 +18,17 @@ class PeopleLoading extends PeopleState {
 
 class PeopleLoaded extends PeopleState {
   final People people;
-  PeopleLoaded({ required this.people }) : super(people: people);
+  PeopleLoaded({ required this.people }) : super();
+
+  @override
+  List<Object> get props => [people];
 }
 
-class PeopleError extends PeopleState {}
+class PeopleError extends PeopleState {
+  final String message;
+
+  PeopleError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

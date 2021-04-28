@@ -13,10 +13,10 @@ class CounterCubit extends Cubit<CounterCubitState> {
     internetStreamSubscription = internetCubit.stream.listen((internetState) {
       if (internetState is InternetConnected &&
           internetState.connectionType == ConnectionType.Wifi) {
-        increment();
+          increment();
       } else if (internetState is InternetConnected &&
           internetState.connectionType == ConnectionType.Mobile) {
-        decrement();
+          decrement();
       }
     });
   }
@@ -30,7 +30,7 @@ class CounterCubit extends Cubit<CounterCubitState> {
   }
 
   @override
-  Future<void> dispose() {
+  Future<void> close() {
     internetStreamSubscription.cancel();
     return super.close();
   }

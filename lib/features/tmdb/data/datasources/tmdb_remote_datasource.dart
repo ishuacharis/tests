@@ -5,9 +5,10 @@ import '../../../../core/exceptions/exception.dart';
 import '../model/people.dart';
 
 const API_KEY = "";
+const String endPoint =  "https://api.themoviedb.org/3/person/popular?api_key=$API_KEY";
 abstract class TmdbRemoteDataSource {
 
-  Future<People> getPeople();
+  Future<People> getAllPeople();
 
 }
 
@@ -19,22 +20,23 @@ class TmdbRemoteDataSourceImpl implements TmdbRemoteDataSource {
   TmdbRemoteDataSourceImpl({ required this.client });
 
   @override
-  Future<People> getPeople() async {
+  Future<People> getAllPeople() async {
+    final people =  await _getAllPeople();
+    return People.fromJson(people);
+  }
 
 
+  dynamic _getAllPeople() async {
     try{
-        String endPoint =  "https://api.themoviedb.org/3/person/popular?api_key=$API_KEY";
+      var parseUri = Uri.parse(endPoint);
 
-        var parseUri = Uri.parse(endPoint);
+      http.Response response =  await client.get(parseUri);
 
-        http.Response response =  await client.get(parseUri);
-
-        Map<String,dynamic> results = json.decode(response.body);
-        if(response.statusCode != 200) {
-          throw Exception("Unable to process url");
-        }
-        print("results $results");
-        return People.fromJson(results);
+      Map<String,dynamic> results = json.decode(response.body);
+      if(response.statusCode != 200) {
+        throw Exception("Unable to process url");
+      }
+     return results;
 
     } on SocketException {
 
@@ -43,7 +45,7 @@ class TmdbRemoteDataSourceImpl implements TmdbRemoteDataSource {
 
       throw ServerException(error: "Internal server error");
     } on FormatException {
-  
+
       throw InvalidFormatException(error: "Please check your data");
     } catch(e) {
 

@@ -7,4 +7,5 @@ const home_page  ="home_page";
 const selection_page = "selection_page";
 const page_builder = "page_builder";
 const hive_page =  "hive_page";
-const initial_route =  home_page;
+const artist_list_page = "movie_list_page";
+const initial_route =  artist_list_page;

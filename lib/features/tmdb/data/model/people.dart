@@ -1,6 +1,8 @@
-class People {
-  int? page;
-  late List<Results> results;
+import 'package:equatable/equatable.dart';
+
+class People extends Equatable {
+  final int? page;
+  late List results;
   int? totalPages;
   int? totalResults;
 
@@ -26,9 +28,13 @@ class People {
     return map;
   }
 
+  @override
+  // TODO: implement props
+  List<Object?> get props => [page,results,totalResults,totalPages];
+
 }
 
-class Results {
+class Results extends Equatable{
   bool? adult;
   int? gender;
   int? id;
@@ -79,9 +85,14 @@ class Results {
     return map;
   }
 
+  @override
+  // TODO: implement props
+  List<Object?> get props => [adult,gender,id,knownFor,
+    knownForDepartment,name,popularity,profilePath];
+
 }
 
-class Known_for {
+class Known_for extends Equatable {
   String? backdropPath;
   String? firstAirDate;
   List<int?>? genreIds;
@@ -144,5 +155,13 @@ class Known_for {
     map["vote_count"] = voteCount;
     return map;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    backdropPath,firstAirDate, genreIds,id,mediaType,name,
+    originCountry,originalLanguage,originalName, overview,
+    posterPath,voteAverage,voteCount
+  ];
 
 }

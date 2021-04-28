@@ -59,6 +59,7 @@ class CounterWidget extends StatelessWidget {
                 listener: (context,state){
                   if(state.wasIncremented == true) {
                     print(state.wasIncremented);
+
                   }
                 },
               child: Text("bloc listens"),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
 import '../../core/routes/routes.dart';
 import '../../core/shared/internet/bloc/internet_bloc.dart';
 import '../../core/shared/internet/cubit/internet_cubit.dart';
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> {
           ),
           BlocProvider<CounterBloc>(
               create: (context) => CounterBloc(internetBloc: context.read<InternetBloc>())
-          )
+          ),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',

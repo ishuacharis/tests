@@ -31,10 +31,7 @@ class _CounterPageState extends State<CounterPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CounterCubit(internetCubit: context.read<InternetCubit>()),
-      child: CounterCubitWidget()
-    );
+    return CounterCubitWidget();
   }
 }
 

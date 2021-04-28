@@ -41,6 +41,9 @@ class HomePage extends StatelessWidget {
                   },
                   child: Text("Counter Stream")
               ),
+              ElevatedButton(onPressed: () => Navigator.of(context).pushNamed(counter_page),
+                  child: Text("Movies")
+              )
             ],
           ),
         ),

@@ -9,19 +9,20 @@ import 'package:path_provider/path_provider.dart';
 import 'package:tests/core/models/person.dart';
 import 'core/pages/my_app.dart';
 import 'features/counter/counter_observer.dart';
+import 'features/tmdb/data/datasources/tmdb_remote_datasource.dart';
 import 'injection_container.dart' as di;
-import 'injection_container.dart';
 
+import 'package:http/http.dart' as http;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = CounterObserver();
+  await di.init();
+  //Directory appDocDir = await getApplicationDocumentsDirectory();
+  //String appDocPath = appDocDir.path;
 
-  Directory appDocDir = await getApplicationDocumentsDirectory();
-  String appDocPath = appDocDir.path;
-
-  Hive.init(appDocPath);
-  Hive.registerAdapter(PersonAdapter());
-  await Hive.openBox("contacts");
+  //Hive.init(appDocPath);
+  //Hive.registerAdapter(PersonAdapter());
+  //await Hive.openBox("contacts");
   runApp(MyApp(connectivity: Connectivity(),));
 
 }

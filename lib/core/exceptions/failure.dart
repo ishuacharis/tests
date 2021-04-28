@@ -29,3 +29,10 @@ class InvalidFormatFailure extends Failure{
 
   InvalidFormatFailure({ required this.failure }) : super(failure: failure);
 }
+
+class UnCaughtFailure extends Failure{
+
+  final String failure;
+
+  UnCaughtFailure({ required this.failure }) : super(failure: failure);
+}
