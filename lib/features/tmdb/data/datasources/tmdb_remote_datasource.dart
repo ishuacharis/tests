@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
+import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import '../../../../core/exceptions/exception.dart';
 import '../model/people.dart';
 
@@ -9,7 +10,7 @@ var API_KEY = FlutterConfig.get('TMOVIES_API_KEY');
 String endPoint =  "https://api.themoviedb.org/3/person/popular?api_key=$API_KEY";
 abstract class TmdbRemoteDataSource {
 
-  Future<People> getAllPeople();
+  Future<Artist> getAllPeople();
 
 }
 
@@ -21,9 +22,9 @@ class TmdbRemoteDataSourceImpl implements TmdbRemoteDataSource {
   TmdbRemoteDataSourceImpl({ required this.client });
 
   @override
-  Future<People> getAllPeople() async {
+  Future<Artist> getAllPeople() async {
     final people =  await _getAllPeople();
-    return People.fromJson(people);
+    return Artist.fromJson(people);
   }
 
 

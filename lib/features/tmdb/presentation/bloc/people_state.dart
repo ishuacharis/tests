@@ -17,7 +17,7 @@ class PeopleLoading extends PeopleState {
 }
 
 class PeopleLoaded extends PeopleState {
-  final People people;
+  final Artist people;
   PeopleLoaded({ required this.people }) : super();
 
   @override

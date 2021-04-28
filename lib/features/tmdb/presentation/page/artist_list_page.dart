@@ -69,7 +69,8 @@ class ArtistListTile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GestureDetector(
-      onTap: () => BlocProvider.of<NavigationBloc>(context).add(NavigationPushName(route: artist_detail_page, params: "Vin diesel")),
+      onTap: () => BlocProvider.of<NavigationBloc>(context)
+          .add(NavigationPushName(route: artist_detail_page, params: artist["name"])),
       child: ListTile(
         leading: CircleAvatar(
           backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),

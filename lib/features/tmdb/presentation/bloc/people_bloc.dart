@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tests/core/exceptions/failure.dart';
+import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import '../../data/model/people.dart';
 import 'package:tests/features/tmdb/domain/usecase/get_people_usecase.dart';
 
