@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
 import '../../../../core/exceptions/exception.dart';
 import '../model/people.dart';
 
-const API_KEY = "";
-const String endPoint =  "https://api.themoviedb.org/3/person/popular?api_key=$API_KEY";
+var API_KEY = FlutterConfig.get('TMOVIES_API_KEY');
+String endPoint =  "https://api.themoviedb.org/3/person/popular?api_key=$API_KEY";
 abstract class TmdbRemoteDataSource {
 
   Future<People> getAllPeople();
