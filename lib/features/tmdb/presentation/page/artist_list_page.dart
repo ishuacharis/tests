@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
+import 'package:tests/core/routes/routes.dart';
 import 'package:tests/features/tmdb/data/model/people.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
 
@@ -66,9 +68,14 @@ class ArtistListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return ListTile(
-      leading: Text(artist["id"].toString()),
-      title: Text(artist["name"]),
+    return GestureDetector(
+      onTap: () => BlocProvider.of<NavigationBloc>(context).add(NavigationPushName(route: artist_detail_page, params: "Vin diesel")),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
+        ),
+        title: Text(artist["name"]),
+      ),
     );
   }
 }

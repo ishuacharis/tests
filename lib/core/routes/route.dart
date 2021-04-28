@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tests/features/tmdb/presentation/page/artist_detail_page.dart';
 import 'package:tests/features/tmdb/presentation/page/artist_list_page.dart';
 import '../pages/hive_page.dart';
 import '../pages/home_page.dart';
@@ -38,6 +39,8 @@ class GeneratedRoute {
         return MaterialPageRoute(builder: (_) =>  CounterAuxPage(),);
       case artist_list_page:
         return MaterialPageRoute(builder: (_) => ArtistListPage());
+      case artist_detail_page:
+        return MaterialPageRoute(builder: (_) => ArtistDetailPage(args.toString()));
       case todo_page:
         return MaterialPageRoute(builder: (_) => BlocProvider.value(
           value: _todoBloc,

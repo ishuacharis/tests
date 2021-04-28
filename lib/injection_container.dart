@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
 import 'package:tests/core/platform/connectivity_info.dart';
 import 'package:tests/core/shared/internet/bloc/internet_bloc.dart';
 import 'package:tests/core/shared/internet/cubit/internet_cubit.dart';
@@ -40,6 +42,7 @@ Future<void> init() async {
 
   //blocs
   s1.registerFactory(() => PeopleBloc(peopleUseCase: s1()) );
+  s1.registerFactory(() => NavigationBloc(s1()) );
   
   s1.registerLazySingleton<TmdbRepository>(() => TmdbRepositoryImpl(tmdbRemoteDataSource: s1()));
   // usecases
@@ -50,9 +53,13 @@ Future<void> init() async {
   
   //external
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
 
+  s1.registerLazySingleton(() => navigatorKey);
   s1.registerLazySingleton(() => Connectivity());
   s1.registerLazySingleton(() => sharedPreferences);
   s1.registerLazySingleton(() => http.Client());
+
+
   print("loaded");
 }
