@@ -13,6 +13,7 @@ import 'package:tests/features/tmdb/domain/usecase/get_people_usecase.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
 
 import 'features/counter/presentation/cubit/counter_cubit.dart';
+import 'features/tmdb/data/datasources/tmdb_datasource.dart';
 import 'features/tmdb/data/datasources/tmdb_remote_datasource.dart';
 import 'features/tmdb/data/repository/tmdb_repo_impl.dart';
 

@@ -9,4 +9,5 @@ const page_builder = "page_builder";
 const hive_page =  "hive_page";
 const artist_list_page = "movie_list_page";
 const artist_detail_page = "artist_detail_page";
-const initial_route =  artist_list_page;
+const counter_riverpod_page = "counter_riverpod_page";
+const initial_route =  counter_riverpod_page;

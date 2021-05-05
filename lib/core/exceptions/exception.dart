@@ -19,3 +19,5 @@ class InvalidFormatException implements Exception {
 
   InvalidFormatException({ required this.error });
 }
+
+class CacheException implements Exception{}

@@ -30,6 +30,13 @@ class InvalidFormatFailure extends Failure{
   InvalidFormatFailure({ required this.failure }) : super(failure: failure);
 }
 
+class CacheFailure extends Failure{
+
+  final String failure;
+
+  CacheFailure({required this.failure}) : super(failure: failure);
+}
+
 class UnCaughtFailure extends Failure{
 
   final String failure;

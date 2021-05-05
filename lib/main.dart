@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tests/core/models/person.dart';
@@ -20,7 +21,9 @@ void main() async {
   //Hive.init(appDocPath);
   //Hive.registerAdapter(PersonAdapter());
   //await Hive.openBox("contacts");
-  runApp(MyApp(connectivity: Connectivity(),));
+  runApp(
+    ProviderScope(child: MyApp(connectivity: Connectivity(),))
+  );
 
 }
 

@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:tests/core/exceptions/exception.dart';
 import 'package:tests/core/exceptions/failure.dart';
-import 'package:tests/features/tmdb/data/datasources/tmdb_remote_datasource.dart';
-import 'package:tests/features/tmdb/data/model/people.dart';
+import 'package:tests/features/tmdb/data/datasources/tmdb_datasource.dart';
+
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import 'package:tests/features/tmdb/domain/repository/TmdbRepository.dart';
 
