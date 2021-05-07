@@ -44,12 +44,19 @@ class TmdbRemoteDataSourceImpl implements TmdbRemoteDataSource {
     } on FormatException {
 
       throw InvalidFormatException(error: "Please check your data");
-    } catch(e) {
+    }
+    catch(e) {
 
       throw Exception(e.toString());
     }
 
 
+  }
+
+  @override
+  Future<Artist> getAllPeopleRiverPod() async {
+    final people =  await _getAllPeople();
+    return Artist.fromJson(people);
   }
 
 }

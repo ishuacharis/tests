@@ -12,12 +12,15 @@ class CounterNotifier extends StateNotifier<CounterModel> {
   CounterNotifier() : super(CounterModel(0));
 
   void increment() => {
+    print('initial state ${state.count}'),
     state = CounterModel(state.count++),
-    print(state.count++)
+    print('final state ${state.count++}')
   };
 }
 
-final counterProvider  = StateNotifierProvider<CounterNotifier, CounterModel>((ref) => CounterNotifier());
+final counterProvider  = StateNotifierProvider<CounterNotifier, CounterModel>((ref){
+  return CounterNotifier();
+});
 
 class CounterRiverPodPage extends ConsumerWidget {
 
@@ -25,17 +28,17 @@ class CounterRiverPodPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context,ScopedReader watch) {
     final CounterNotifier counterNotifier = watch(counterProvider.notifier);
-    CounterModel counter  = watch(counterProvider);
+    int counter  = watch(counterProvider).count;
     return Scaffold(
         appBar: AppBar(
           title: Text("Counter river pod"),
         ),
         body: Center(
-          child: Text("you have pushed this button ${counter.count}"),
+          child: Text("you have pushed this button ${counter}"),
         ),
         floatingActionButton: ProviderListener<CounterModel>(
           provider: counterProvider,
-          onChange: (context, counterModel){
+          onChange: (BuildContext context, CounterModel counterModel){
             if(counterModel.count == 4){
               final snackBar = SnackBar(
                 content: Text('Yay! A SnackBar!'),

@@ -43,3 +43,10 @@ class UnCaughtFailure extends Failure{
 
   UnCaughtFailure({ required this.failure }) : super(failure: failure);
 }
+
+class UrlFailure extends Failure{
+
+  final String failure;
+
+  UrlFailure({ required this.failure }) : super(failure: failure);
+}

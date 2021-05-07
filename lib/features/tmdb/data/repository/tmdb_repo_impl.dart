@@ -29,4 +29,9 @@ class TmdbRepositoryImpl extends TmdbRepository {
     }
   }
 
+  @override
+  Future<Artist> getPeopleRiverPod() async {
+    return await tmdbRemoteDataSource.getAllPeopleRiverPod();
+  }
+
 }

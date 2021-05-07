@@ -1,8 +1,4 @@
-
-import 'dart:convert';
-
 import 'package:hive/hive.dart';
-import 'package:tests/core/exceptions/exception.dart';
 import 'package:tests/features/tmdb/data/model/people.dart';
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 abstract class TmdbLocalDataSource {

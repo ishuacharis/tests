@@ -6,5 +6,6 @@ import '../../data/model/people.dart';
 abstract class TmdbRepository {
 
   Future<Either<Failure, Artist>> getPeople();
+  Future<Artist> getPeopleRiverPod();
 
 }
