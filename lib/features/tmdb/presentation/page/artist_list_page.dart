@@ -4,6 +4,7 @@ import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
 import 'package:tests/core/routes/routes.dart';
 import 'package:tests/features/tmdb/data/model/people.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
+import 'package:tests/features/tmdb/presentation/widget/artist_list_tile_widget.dart';
 
 import '../../../../injection_container.dart';
 
@@ -33,7 +34,9 @@ class ArtistListPage extends StatelessWidget {
     return BlocBuilder<PeopleBloc,PeopleState>(
           builder: (context,state) {
             if(state is PeopleLoaded) {
-              return ArtistListWidget(artists: state.people.results);
+              return ArtistListWidget(
+                  artists: state.people.results
+              );
             }else if(state is PeopleError) {
               return Center(child: Text(state.message));
             }else if(state is PeopleLoading) {
@@ -55,32 +58,14 @@ class ArtistListWidget extends StatelessWidget {
       hoverThickness: 32,
       child: ListView.builder(
           itemCount: artists.length,
-          itemBuilder: (context, index) => ArtistListTile(artist: artists[index])
+          itemBuilder: (context, index) => ArtistListTileWidget(
+              artist: artists[index],
+            voidCallback: () => BlocProvider.of<NavigationBloc>(context)
+                .add(NavigationPushName(route: artist_detail_page, params: artists[index]["name"])),
+          )
       ),
     );
   }
 }
-
-class ArtistListTile extends StatelessWidget {
-  final artist;
-
-  ArtistListTile({required this.artist});
-  @override
-  Widget build(BuildContext context) {
-
-    return GestureDetector(
-      onTap: () => BlocProvider.of<NavigationBloc>(context)
-          .add(NavigationPushName(route: artist_detail_page, params: artist["name"])),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
-        ),
-        title: Text(artist["name"]),
-      ),
-    );
-  }
-}
-
-
 
 

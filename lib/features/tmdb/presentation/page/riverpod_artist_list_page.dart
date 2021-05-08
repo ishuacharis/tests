@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tests/features/tmdb/presentation/widget/artist_list_widget.dart';
 import '../riverpod/people_riverpod.dart';
 
 class RiverPodArtistListPage extends ConsumerWidget {
@@ -14,7 +15,10 @@ class RiverPodArtistListPage extends ConsumerWidget {
         body: Center(
           child: futureAsyncValue.when(
               data: (data) {
-                return ArtistListWidget(artists: data.results);
+                return ArtistListWidget(
+                    artists: data.results,
+                  voidCallback: () => print('river pod'),
+                );
               },
               loading: () => CircularProgressIndicator(),
               error: (e,stack) => Text("error is $e")),
@@ -23,7 +27,6 @@ class RiverPodArtistListPage extends ConsumerWidget {
           builder: (context) => FloatingActionButton(
               child: Icon(Icons.add),
               onPressed: () => print("wale")
-                  //BlocProvider.of<PeopleBloc>(context).add(GetAllPeopleEvent())
           ),
         ),
       );
@@ -35,40 +38,26 @@ class RiverPodArtistListPage extends ConsumerWidget {
   }
 }
 
-class ArtistListWidget extends StatelessWidget {
-  final List artists;
-  ArtistListWidget({ required this.artists});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scrollbar(
-      hoverThickness: 32,
-      child: ListView.builder(
-          itemCount: artists.length,
-          itemBuilder: (context, index) => ArtistListTile(artist: artists[index])
-      ),
-    );
-  }
-}
 
-class ArtistListTile extends StatelessWidget {
-  final artist;
-
-  ArtistListTile({required this.artist});
-  @override
-  Widget build(BuildContext context) {
-
-    return GestureDetector(
-      onTap: () => print("riverpod"),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
-        ),
-        title: Text(artist["name"]),
-      ),
-    );
-  }
-}
+// class ArtistListTile extends StatelessWidget {
+//   final artist;
+//
+//   ArtistListTile({required this.artist});
+//   @override
+//   Widget build(BuildContext context) {
+//
+//     return GestureDetector(
+//       onTap: () => print("riverpod"),
+//       child: ListTile(
+//         leading: CircleAvatar(
+//           backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
+//         ),
+//         title: Text(artist["name"]),
+//       ),
+//     );
+//   }
+// }
 
 
 
