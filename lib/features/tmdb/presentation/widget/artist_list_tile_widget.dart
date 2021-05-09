@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
+import 'package:tests/injection_container.dart';
 
 class ArtistListTileWidget extends StatelessWidget {
   final artist;
@@ -7,7 +9,6 @@ class ArtistListTileWidget extends StatelessWidget {
   ArtistListTileWidget({required this.artist,required this.voidCallback});
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: () => voidCallback(),
       child: ListTile(

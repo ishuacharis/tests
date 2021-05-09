@@ -1,21 +1,28 @@
+import 'package:hive/hive.dart';
 import 'package:tests/features/tmdb/data/model/people.dart';
+part 'artist_entity.g.dart';
 
+@HiveType(typeId: 2)
 class Artist extends People {
-
-  final int? page;
-  late List results;
-  int? totalPages;
-  int? totalResults;
+  @HiveField(0)
+  final List results;
   Artist({
-    this.page,
     required this.results,
-    this.totalPages,
-    this.totalResults
-  }) : super(page: page, results: results,totalResults: totalResults, totalPages: totalPages);
+  }) : super(results: results,);
 
   factory Artist.fromJson(dynamic json) {
 
-    return Artist(page: json["page"], results: json["results"], totalPages: json["totalPages"], totalResults: json["totalResults"]);
+    return Artist(results: json["results"],);
+  }
+  Map<String,dynamic> toJson() {
+    return {
+      "results": results
+    };
+  }
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "$results";
   }
 
 }

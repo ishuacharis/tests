@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:hive/hive.dart';
 import 'package:tests/features/tmdb/data/model/people.dart';
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
@@ -12,16 +14,18 @@ class TmdbLocalDataSourceImpl extends TmdbLocalDataSource {
 
   @override
   Future<Artist> getLastCacheArtist() async {
-    final artist =  await Hive.openBox('artists');
-
-    final artists = Future.value(Artist.fromJson(artist));
+    final Box tmdbBox =  await Hive.openBox("tmdb");
+    final artistKey =  tmdbBox.get("artists");
+    final artists = Future.value(Artist.fromJson(json.decode(artistKey)));
+    print("artist ${artists}");
     return artists;
   }
 
   @override
   Future<void> cacheArtist(People artistCache) async {
-    var artists = await Hive.openBox('artists');
-    //return box.('cache_artist', artistCache);
+   final Box tmdbBox =  await Hive.openBox("tmdb");
+   tmdbBox.put("artists", json.encode(artistCache.toJson()));
+   print("artis cached");
   }
 
 

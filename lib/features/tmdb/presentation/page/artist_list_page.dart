@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
 import 'package:tests/core/routes/routes.dart';
-import 'package:tests/features/tmdb/data/model/people.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
 import 'package:tests/features/tmdb/presentation/widget/artist_list_tile_widget.dart';
 
@@ -13,7 +12,7 @@ class ArtistListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => s1<PeopleBloc>(),
+        create: (_) => s1<PeopleBloc>()..add(GetAllPeopleEvent()),
         child: Scaffold(
           appBar: AppBar(
             title: Text("Movies"),

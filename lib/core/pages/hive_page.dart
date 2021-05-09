@@ -76,7 +76,7 @@ class _PAppState extends State<HiveApp> {
             ElevatedButton(
               child: Text("Add"),
               onPressed: () {
-                var person = Person(name: "titi", age: "12",);
+                var person = Person(name: "titi", age: 12,);
                 box.add(person);
               },
             ),
