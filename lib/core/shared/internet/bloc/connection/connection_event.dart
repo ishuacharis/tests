@@ -1,14 +1,14 @@
-part of 'internet_bloc.dart';
+part of 'connection_bloc.dart';
 
 @immutable
-abstract class InternetEvent extends Equatable{
+abstract class ConnectionEvent extends Equatable{
   final InternetStatus internetStatus;
 
-  InternetEvent({required this.internetStatus});
+  ConnectionEvent({required this.internetStatus});
 
     List<Object?> get props => [internetStatus];
 }
-class InternetConnectedEvent extends InternetEvent{
+class InternetConnectedEvent extends ConnectionEvent{
   final InternetStatus internetStatus;
   InternetConnectedEvent({required this.internetStatus}) : super(internetStatus: internetStatus);
 
@@ -17,7 +17,7 @@ class InternetConnectedEvent extends InternetEvent{
   List<Object?> get props => [internetStatus];
 }
 
-class InternetDisconnectedEvent extends InternetEvent{
+class InternetDisconnectedEvent extends ConnectionEvent{
 
   final InternetStatus internetStatus;
 

@@ -6,14 +6,14 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:meta/meta.dart';
 import 'package:tests/core/constants/enums/internet_status.dart';
 
-part 'internet_event.dart';
-part 'internet_state.dart';
+part 'connection_event.dart';
+part 'connection_state.dart';
 
-class InternetBloc extends Bloc<InternetEvent, InternetState> {
+class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   final InternetConnectionChecker internetConnectionChecker;
   late StreamSubscription streamSubscription;
 
-  InternetBloc({required this.internetConnectionChecker})
+  ConnectionBloc({required this.internetConnectionChecker})
       : super(InternetLoadingState(internetStatus: InternetStatus.Disconnected)){
     streamSubscription =  internetConnectionChecker.onStatusChange.listen((InternetConnectionStatus status) {
       monitorInternetConnectionStatus(status);
@@ -32,8 +32,8 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   }
 
   @override
-  Stream<InternetState> mapEventToState(
-    InternetEvent event,
+  Stream<ConnectionState> mapEventToState(
+    ConnectionEvent event,
   ) async* {
     if(event is InternetConnectedEvent) {
       yield InternetConnectedState(internetStatus: event.internetStatus);

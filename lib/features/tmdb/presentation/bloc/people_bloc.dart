@@ -3,7 +3,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:tests/core/constants/enums/internet_status.dart';
 import 'package:tests/core/exceptions/failure.dart';
+import 'package:tests/core/shared/internet/bloc/connection/connection_bloc.dart';
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import '../../data/model/people.dart';
 import 'package:tests/features/tmdb/domain/usecase/get_people_usecase.dart';
@@ -14,23 +16,28 @@ part 'people_state.dart';
 class PeopleBloc extends Bloc<PeopleEvent, PeopleState> {
 
   final GetAllPeopleUseCase getAllPeopleUseCase;
-  InternetConnectionChecker internetConnectionChecker = InternetConnectionChecker();
+  final ConnectionBloc internetBloc;
   late StreamSubscription streamSubscription;
 
-  PeopleBloc({required GetAllPeopleUseCase peopleUseCase })
+  PeopleBloc({
+    required GetAllPeopleUseCase peopleUseCase,
+    required this.internetBloc })
       :
         getAllPeopleUseCase = peopleUseCase,
         super(PeopleInitial()){
-    streamSubscription =  internetConnectionChecker.onStatusChange.listen((status) {
-      switch(status) {
-        case InternetConnectionStatus.connected:
-          add(GetAllPeopleEvent());
-          break;
-        case InternetConnectionStatus.disconnected:
-          add(GetNoNetWorkPeopleEvent());
-          break;
-      }
+    streamSubscription =  internetBloc.stream.listen(( ConnectionState internetState) {
+      monitorInternetConnection(internetState);
     });
+  }
+
+  void monitorInternetConnection(ConnectionState internetState) {
+    if(internetState is InternetConnectedState &&
+        internetState.internetStatus == InternetStatus.Connected ){
+      add(GetAllPeopleEvent());
+    } else if(internetState is InternetDisconnectedState &&
+        internetState.internetStatus == InternetStatus.Disconnected){
+      add(GetNoNetWorkPeopleEvent());
+    }
   }
 
 

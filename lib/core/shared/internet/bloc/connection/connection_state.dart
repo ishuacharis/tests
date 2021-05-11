@@ -1,16 +1,16 @@
-part of 'internet_bloc.dart';
+part of 'connection_bloc.dart';
 
 @immutable
-abstract class InternetState extends Equatable {
+abstract class ConnectionState extends Equatable {
 
   final InternetStatus internetStatus;
-  InternetState({required this.internetStatus});
+  ConnectionState({required this.internetStatus});
 
   @override
   List get props => [internetStatus];
 }
 
-class InternetLoadingState extends InternetState {
+class InternetLoadingState extends ConnectionState {
   final InternetStatus internetStatus;
 
   InternetLoadingState({required this.internetStatus}) : super(internetStatus: internetStatus);
@@ -19,7 +19,7 @@ class InternetLoadingState extends InternetState {
   List get props => [internetStatus];
 }
 
-class InternetConnectedState extends InternetState {
+class InternetConnectedState extends ConnectionState {
   final InternetStatus internetStatus;
 
   InternetConnectedState({required this.internetStatus}) : super(internetStatus: internetStatus);
@@ -28,7 +28,7 @@ class InternetConnectedState extends InternetState {
   List get props => [internetStatus];
 }
 
-class InternetDisconnectedState extends InternetState {
+class InternetDisconnectedState extends ConnectionState {
   final InternetStatus internetStatus;
 
   InternetDisconnectedState({required this.internetStatus}): super(internetStatus: internetStatus);

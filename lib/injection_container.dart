@@ -15,6 +15,7 @@ import 'package:tests/features/tmdb/domain/repository/TmdbRepository.dart';
 import 'package:tests/features/tmdb/domain/usecase/get_people_usecase.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
 
+import 'core/shared/internet/bloc/connection/connection_bloc.dart';
 import 'features/counter/presentation/cubit/counter_cubit.dart';
 import 'features/tmdb/data/datasources/tmdb_datasource.dart';
 import 'features/tmdb/data/datasources/tmdb_remote_datasource.dart';
@@ -45,7 +46,8 @@ Future<void> init() async {
   // );
 
   //blocs
-  s1.registerFactory(() => PeopleBloc(peopleUseCase: s1()) );
+  s1.registerFactory(() => ConnectionBloc(internetConnectionChecker: s1()));
+  s1.registerFactory(() => PeopleBloc(peopleUseCase: s1(), internetBloc: s1()) );
   s1.registerFactory(() => NavigationBloc(s1()) );
   
   s1.registerLazySingleton<TmdbRepository>(() => TmdbRepositoryImpl(
