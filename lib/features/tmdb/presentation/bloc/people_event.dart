@@ -8,3 +8,5 @@ abstract class PeopleEvent extends Equatable {
 }
 
 class GetAllPeopleEvent extends PeopleEvent {}
+
+class GetNoNetWorkPeopleEvent extends PeopleEvent{}

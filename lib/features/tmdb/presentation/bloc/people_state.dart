@@ -18,7 +18,8 @@ class PeopleLoading extends PeopleState {
 
 class PeopleLoaded extends PeopleState {
   final Artist people;
-  PeopleLoaded({ required this.people }) : super();
+  final bool isConnected;
+  PeopleLoaded({ required this.people, this.isConnected = false }) : super();
 
   @override
   List<Object> get props => [people];
