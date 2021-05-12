@@ -8,6 +8,7 @@ class RiverPodArtistListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final futureAsyncValue =  watch(artistProvider);
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Movies"),
@@ -15,10 +16,7 @@ class RiverPodArtistListPage extends ConsumerWidget {
         body: Center(
           child: futureAsyncValue.when(
               data: (data) {
-                return ArtistListWidget(
-                    artists: data.results,
-                  voidCallback: () => print('river pod'),
-                );
+                return Text("wale");
               },
               loading: () => CircularProgressIndicator(),
               error: (e,stack) => Text("error is $e")),
