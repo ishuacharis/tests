@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
-import 'package:tests/injection_container.dart';
 
 class ArtistListTileWidget extends StatelessWidget {
   final artist;

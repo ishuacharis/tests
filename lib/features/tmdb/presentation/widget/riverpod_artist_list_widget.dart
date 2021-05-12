@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tests/features/tmdb/presentation/widget/artist_list_tile_widget.dart';
+import 'package:tests/features/tmdb/presentation/widget/riverpod_artist_list_tile_widget.dart';
 
-class ArtistListWidget extends StatelessWidget {
+class RiverPodArtistListWidget extends StatelessWidget {
   final List artists;
   final VoidCallback voidCallback;
-  ArtistListWidget({ required this.artists,required this.voidCallback});
+  RiverPodArtistListWidget({ required this.artists,required this.voidCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +12,13 @@ class ArtistListWidget extends StatelessWidget {
       hoverThickness: 32,
       child: ListView.builder(
           itemCount: artists.length,
-          itemBuilder: (context, index) => ArtistListTileWidget(
+          itemBuilder: (context, index) => RiverPodArtistListTile(
               artist: artists[index],
-              voidCallback: voidCallback,
           ),
           )
       );
   }
 }
+
+
+

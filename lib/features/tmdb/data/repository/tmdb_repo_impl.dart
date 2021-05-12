@@ -53,7 +53,34 @@ class TmdbRepositoryImpl extends TmdbRepository {
 
   @override
   Future<Artist> getPeopleRiverPod() async {
-    return await tmdbRemoteDataSource.getAllPeopleRiverPod();
+
+    if(await networkInfo.hasConnection){
+      print("connection");
+      try{
+        final allArtist  =  await tmdbRemoteDataSource.getAllPeople();
+        tmdbLocalDataSource.cacheArtist(allArtist);
+        return allArtist;
+
+      }on ServerException {
+        throw ServerFailure(failure: "Please check your internet settings");
+      } on NetworkException {
+        throw NetWorkFailure(failure: "Internal server error");
+      } on InvalidFormatException {
+        throw InvalidFormatFailure(failure: "Please check your data");
+      } catch(e) {
+        print("error ${e}");
+        throw UnCaughtFailure(failure: e.toString());
+      }
+
+    }else{
+      print("no connection");
+      try{
+        final localArtist  =  await tmdbLocalDataSource.getLastCacheArtist();
+        return localArtist;
+      } on CacheException{
+        throw CacheFailure(failure: "Unable to cache data");
+      }
+    }
   }
 
 }
