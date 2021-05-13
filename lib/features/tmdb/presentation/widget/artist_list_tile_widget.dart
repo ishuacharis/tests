@@ -17,13 +17,13 @@ class ArtistListTileWidget extends StatelessWidget {
             if(state is PeopleLoaded) {
               if(state.isConnected) {
                 return CircleAvatar(
-                  backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
+                  backgroundImage: artist["profile_path"] == null ?
+                  NetworkImage("https://via.placeholder.com/150") :
+                  NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
                 );
               }
               return CircleAvatar(
-                backgroundImage: AssetImage(
-                  "assets/images/face.png"
-                ),
+                backgroundImage: AssetImage("assets/images/face.png"),
               );
             }
             return CircleAvatar(

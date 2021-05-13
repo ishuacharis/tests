@@ -44,15 +44,13 @@ class PeopleBloc extends Bloc<PeopleEvent, PeopleState> {
   @override
   Stream<PeopleState> mapEventToState(PeopleEvent event,) async* {
     if (event is GetAllPeopleEvent) {
-      final failureOrPeople = await getAllPeopleUseCase(NoParams());
-
       yield PeopleLoading();
+      final failureOrPeople = await getAllPeopleUseCase(NoParams());
       yield* _eitherLoadedOrError(failureOrPeople,true);
 
     } else if(event is GetNoNetWorkPeopleEvent) {
-      final failureOrPeople = await getAllPeopleUseCase(NoParams());
-
       yield PeopleLoading();
+      final failureOrPeople = await getAllPeopleUseCase(NoParams());
       yield* _eitherLoadedOrError(failureOrPeople,false);
     }
   }

@@ -43,7 +43,7 @@ class GeneratedRoute {
       case artist_list_page:
         return MaterialPageRoute(builder: (_) => ArtistListPage());
       case artist_detail_page:
-        return MaterialPageRoute(builder: (_) => ArtistDetailPage(args.toString()));
+        return MaterialPageRoute(builder: (_) => ArtistDetailPage(args));
       case counter_riverpod_page:
         return MaterialPageRoute(builder: (_) => CounterRiverPodPage());
       case riverpod_artist_list_page:

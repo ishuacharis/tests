@@ -60,7 +60,7 @@ class ArtistListWidget extends StatelessWidget {
           itemBuilder: (context, index) => ArtistListTileWidget(
               artist: artists[index],
             voidCallback: () => BlocProvider.of<NavigationBloc>(context)
-                .add(NavigationPushName(route: artist_detail_page, params: artists[index]["name"])),
+                .add(NavigationPushName(route: artist_detail_page, params: artists[index])),
           )
       ),
     );
