@@ -5,6 +5,7 @@ import 'package:tests/features/auth/presentation/login.dart';
 import 'package:tests/features/counter/presentation/riverpod/counter_riverpod_page.dart';
 import 'package:tests/features/tmdb/presentation/page/artist_detail_page.dart';
 import 'package:tests/features/tmdb/presentation/page/artist_list_page.dart';
+import 'package:tests/features/tmdb/presentation/page/riverpod_artist_detail_page.dart';
 import 'package:tests/features/tmdb/presentation/page/riverpod_artist_list_page.dart';
 import '../pages/hive_page.dart';
 import '../pages/home_page.dart';
@@ -48,6 +49,8 @@ class GeneratedRoute {
         return MaterialPageRoute(builder: (_) => CounterRiverPodPage());
       case riverpod_artist_list_page:
         return MaterialPageRoute(builder: (_) => RiverPodArtistListPage());
+      case riverpod_artist_detail_page:
+        return MaterialPageRoute(builder: (_) => RiverPodArtistDetailPage(args));
       case login_page:
         return MaterialPageRoute(builder: (_) => LoginPage());
       case todo_page:

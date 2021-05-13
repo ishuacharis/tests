@@ -11,5 +11,6 @@ const artist_list_page = "movie_list_page";
 const artist_detail_page = "artist_detail_page";
 const counter_riverpod_page = "counter_riverpod_page";
 const riverpod_artist_list_page = "riverpod_artist_list_page";
+const riverpod_artist_detail_page = "riverpod_artist_detail_page";
 const login_page = "login_page";
-const initial_route =  artist_list_page;
+const initial_route =  riverpod_artist_list_page;

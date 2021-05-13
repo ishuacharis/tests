@@ -4,13 +4,13 @@ import 'package:tests/features/tmdb/presentation/riverpod/people_riverpod.dart';
 
 class RiverPodArtistListTile extends ConsumerWidget {
   final artist;
-
-  RiverPodArtistListTile({required this.artist});
+  final VoidCallback voidCallback;
+  RiverPodArtistListTile({required this.artist, required this.voidCallback});
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final futureAsyncValue = watch(internetStatusProvider).data;
     return GestureDetector(
-      onTap: () => print("riverpod"),
+      onTap: () => voidCallback(),
       child: ListTile(
         leading: futureAsyncValue!.value.isConnected == false ?
         CircleAvatar(

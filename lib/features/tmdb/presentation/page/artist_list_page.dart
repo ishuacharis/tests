@@ -32,11 +32,12 @@ class ArtistListPage extends StatelessWidget {
 
     return BlocBuilder<PeopleBloc,PeopleState>(
           builder: (context,state) {
-            if(state is PeopleLoaded) {
+            if(state is PeopleLoaded && state.isConnected) {
               return ArtistListWidget(
                   artists: state.people.results
               );
-            }else if(state is PeopleError) {
+            }
+            else if(state is PeopleError) {
               return Center(child: Text(state.message));
             }else if(state is PeopleLoading) {
               return Center(child: CircularProgressIndicator());
