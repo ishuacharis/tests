@@ -57,7 +57,9 @@ Future<void> init() async {
 
   //blocs
   s1.registerFactory(() => ConnectionBloc(internetConnectionChecker: s1()));
-  s1.registerFactory(() => PeopleBloc(peopleUseCase: s1(), internetBloc: s1()) );
+  s1.registerFactory(() => PeopleBloc(
+      personUseCase: s1(),
+      peopleUseCase: s1(), internetBloc: s1()) );
   s1.registerFactory(() => NavigationBloc(s1()) );
   
   s1.registerLazySingleton<TmdbRepository>(() => TmdbRepositoryImpl(

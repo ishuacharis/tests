@@ -7,6 +7,13 @@ abstract class PeopleEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetAllPeopleEvent extends PeopleEvent {}
+class GetAllPeopleEvent extends PeopleEvent {
+  final bool isConnected;
+  GetAllPeopleEvent({this.isConnected = false});
+}
+class GetSinglePersonEvent extends PeopleEvent {
+  final int id;
+  GetSinglePersonEvent({ required this.id });
+}
 
 class GetNoNetWorkPeopleEvent extends PeopleEvent{}

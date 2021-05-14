@@ -4,6 +4,8 @@ import 'package:tests/core/exceptions/failure.dart';
 import 'package:tests/core/network/network_info.dart';
 import 'package:tests/features/tmdb/data/datasources/tmdb_datasource.dart';
 import 'package:tests/features/tmdb/data/datasources/tmdb_local_data_source.dart';
+import 'package:tests/features/tmdb/data/model/movie_model.dart';
+import 'package:tests/features/tmdb/data/model/person_model.dart';
 
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import 'package:tests/features/tmdb/domain/repository/TmdbRepository.dart';
@@ -80,6 +82,42 @@ class TmdbRepositoryImpl extends TmdbRepository {
       } on CacheException{
         throw CacheFailure(failure: "Unable to cache data");
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, PersonModel>> getSinglePerson(int person_id) async{
+
+    try{
+      final person  =  await tmdbRemoteDataSource.getSinglePerson(person_id);
+      return Right(person);
+
+    }on ServerException {
+      throw Left(ServerFailure(failure: "Please check your internet settings"));
+    } on NetworkException {
+      throw Left(NetWorkFailure(failure: "Internal server error"));
+    } on InvalidFormatException {
+      throw Left(InvalidFormatFailure(failure: "Please check your data"));
+    } catch(e) {
+      print("error ${e}");
+      throw Left(UnCaughtFailure(failure: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, MovieModel>> getSingleMovie(int id) async{
+    try{
+      final movie  =  await tmdbRemoteDataSource.getSingleMovie(id);
+      return Right(movie);
+    }on ServerException {
+      throw Left(ServerFailure(failure: "Please check your internet settings"));
+    } on NetworkException {
+      throw Left(NetWorkFailure(failure: "Internal server error"));
+    } on InvalidFormatException {
+      throw Left(InvalidFormatFailure(failure: "Please check your data"));
+    } catch(e) {
+      print("error ${e}");
+      throw Left(UnCaughtFailure(failure: e.toString()));
     }
   }
 

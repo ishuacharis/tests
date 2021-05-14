@@ -25,6 +25,15 @@ class PeopleLoaded extends PeopleState {
   List<Object> get props => [people];
 }
 
+class PersonLoaded extends PeopleState {
+  final PersonModel personModel;
+  final bool isConnected;
+  PersonLoaded({ required this.personModel, this.isConnected = false }) : super();
+
+  @override
+  List<Object> get props => [personModel];
+}
+
 class PeopleError extends PeopleState {
   final String message;
 
