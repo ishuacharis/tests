@@ -13,4 +13,4 @@ const counter_riverpod_page = "counter_riverpod_page";
 const riverpod_artist_list_page = "riverpod_artist_list_page";
 const riverpod_artist_detail_page = "riverpod_artist_detail_page";
 const login_page = "login_page";
-const initial_route =  riverpod_artist_list_page;
+const initial_route =  home_page;

@@ -12,6 +12,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tests/core/models/person.dart';
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
+import 'package:tests/features/twitter/data/datasource/twitter_remoate_datasource.dart';
 import 'core/pages/my_app.dart';
 import 'features/counter/counter_observer.dart';
 import 'injection_container.dart' as di;
