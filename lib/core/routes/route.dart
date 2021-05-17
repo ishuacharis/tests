@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tests/core/pages/settings_page.dart';
 import 'package:tests/features/auth/presentation/login.dart';
 import 'package:tests/features/counter/presentation/riverpod/counter_riverpod_page.dart';
 import 'package:tests/features/tmdb/presentation/page/artist_detail_page.dart';
@@ -53,6 +54,8 @@ class GeneratedRoute {
         return MaterialPageRoute(builder: (_) => RiverPodArtistDetailPage(args));
       case login_page:
         return MaterialPageRoute(builder: (_) => LoginPage());
+      case settings_page:
+        return MaterialPageRoute(builder: (_) => SettingsPage());
       case todo_page:
         return MaterialPageRoute(builder: (_) => BlocProvider.value(
           value: _todoBloc,

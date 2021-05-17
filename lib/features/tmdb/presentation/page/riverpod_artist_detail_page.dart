@@ -14,24 +14,24 @@ class RiverPodArtistDetailPage extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              title: Text(artist["name"]),
+              //title: Text(artist["name"]),
               expandedHeight: 200.0,
               pinned: true,
               floating: true,
-              // flexibleSpace: FlexibleSpaceBar(
-              //   title: Text(artist["name"]),
-              //   background: Image.network(
-              //     "https://image.tmdb.org/t/p/w500${artist["profile_path"]}",
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text(artist["name"]),
+                background: Image.network(
+                  "https://image.tmdb.org/t/p/w500${artist["profile_path"]}",
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                      (context,index) => Text("wale"),
-                  //         KnowForCard(
-                  //     knownFor: artist['known_for'][index]
-                  // ),
+                      (context,index) =>
+                          KnowForCard(
+                      knownFor: artist['known_for'][index]
+                  ),
                   childCount: artist['known_for'].length
               ),
             ),
@@ -79,11 +79,11 @@ class KnowForCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildTextWidget("Title", knownFor['original_title']),
-                    _buildTextWidget("Vote average", knownFor["vote_average"].toString()),
-                    _buildTextWidget("Release date",knownFor["release_date"]),
-                    _buildTextWidget("Vote count",knownFor["vote_count"].toString()),
-                    _buildTextWidget("Popularity",knownFor["popularity"].toString()),
+                    _buildTextWidget(context,"Title", knownFor['original_title']),
+                    _buildTextWidget(context,"Vote average", knownFor["vote_average"].toString()),
+                    _buildTextWidget(context,"Release date",knownFor["release_date"]),
+                    _buildTextWidget(context,"Vote count",knownFor["vote_count"].toString()),
+                    _buildTextWidget(context,"Popularity",knownFor["popularity"].toString()),
                   ],
                 ),
               ),
@@ -94,10 +94,10 @@ class KnowForCard extends StatelessWidget {
     );
   }
 
-  Widget _buildTextWidget(String field, String value) {
+  Widget _buildTextWidget(BuildContext context,String field, String value) {
     return Container(
       margin: const EdgeInsets.only(top: 5.0 , bottom: 5.0),
-      child: Text("$field: $value"),
+      child: Text("$field: $value", style: Theme.of(context).textTheme.headline6,),
     );
   }
 }

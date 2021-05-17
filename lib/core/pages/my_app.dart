@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
+import 'package:tests/core/theme/theme.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
 import '../../core/routes/routes.dart';
 import '../../core/shared/internet/bloc/internet_bloc.dart';
@@ -51,10 +52,8 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
+          theme: AppTheme.darkTheme,
+          darkTheme: ThemeData.dark(),
           navigatorKey: s1<NavigationBloc>().navKey,
           initialRoute: initial_route,
           onGenerateRoute: GeneratedRoute.onGeneratedRoute,

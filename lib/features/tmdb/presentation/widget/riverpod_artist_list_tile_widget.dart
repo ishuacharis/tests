@@ -19,7 +19,9 @@ class RiverPodArtistListTile extends ConsumerWidget {
           ),
         )
         : CircleAvatar(
-          backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
+          backgroundImage: artist["profile_path"] == null ?
+          NetworkImage("https://via.placeholder.com/150") :
+          NetworkImage("https://image.tmdb.org/t/p/w500${artist["profile_path"]}"),
         ),
         title: Text(artist["name"]),
       ),
