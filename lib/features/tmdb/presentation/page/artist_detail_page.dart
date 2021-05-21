@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
+import 'package:tests/core/routes/routes.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
-
 import '../../../../injection_container.dart';
 
 class ArtistDetailPage extends StatelessWidget {
@@ -51,48 +52,53 @@ class KnowForCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(10.0),
-        margin: const EdgeInsets.only(top: 35,bottom: 35),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //poster_path
-            Container(
-              height: 150.0,
-              width: 150.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                    image: NetworkImage(
-                      "https://image.tmdb.org/t/p/w500${knownFor["poster_path"]}"
-                    )
+    return GestureDetector(
+      onTap: () =>
+          BlocProvider.of<NavigationBloc>(context)
+          .add(NavigationPushName(route: movie_detail_Page, params: knownFor,)),
+      child: Card(
+        child: Container(
+          padding: const EdgeInsets.all(10.0),
+          margin: const EdgeInsets.only(top: 35,bottom: 35),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //poster_path
+              Container(
+                height: 150.0,
+                width: 150.0,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            "https://image.tmdb.org/t/p/w500${knownFor["poster_path"]}"
+                        )
                       //("assets/images/house.png")
-                ),
-                  borderRadius: BorderRadius.circular(10)
-              ),
-            ),
-            //details
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(left: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildTextWidget(context,"Title", knownFor['original_title']),
-                    _buildTextWidget(context,"Vote average", knownFor["vote_average"].toString()),
-                    _buildTextWidget(context,"Release date",knownFor["release_date"]),
-                    _buildTextWidget(context,"Vote count",knownFor["vote_count"].toString()),
-                    _buildTextWidget(context,"Popularity",knownFor["popularity"].toString()),
-                  ],
+                    ),
+                    borderRadius: BorderRadius.circular(10)
                 ),
               ),
-            )
-          ],
+              //details
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildTextWidget(context,"Title", knownFor['original_title']),
+                      _buildTextWidget(context,"Vote average", knownFor["vote_average"].toString()),
+                      _buildTextWidget(context,"Release date",knownFor["release_date"]),
+                      _buildTextWidget(context,"Vote count",knownFor["vote_count"].toString()),
+                      _buildTextWidget(context,"Popularity",knownFor["popularity"].toString()),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 

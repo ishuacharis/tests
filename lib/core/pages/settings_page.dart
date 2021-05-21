@@ -34,14 +34,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Font size"),
-                  SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        activeTrackColor: Color(0xFFB03164),
-                        thumbColor: Color(0xFFB03164),
-                          inactiveTrackColor: Color(0xFFDE729D),
-                        overlayColor: Color(0xFFDE729D)
-                      ),
-                      child: Slider(
+                   Slider(
                       value: _currentSliderValue,
                       min: 12,
                       max: 48,
@@ -51,8 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           _currentSliderValue = value;
                         });
                       })
-                  )
-                ],
+                                  ],
               ),
             )
           ],

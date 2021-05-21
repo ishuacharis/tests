@@ -7,6 +7,7 @@ class AppTheme {
   AppTheme._();
 
   static const _lightColor = Color(0XFF323131);
+  static const _lighterColor = Color(0XFFECE3EA);
   static const _darkColor = Color(0XFF272127);
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Color(0XFFEDECED),
@@ -34,6 +35,7 @@ class AppTheme {
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Color(0XFFEDECED),
       visualDensity: VisualDensity.adaptivePlatformDensity,
+    //primaryColor: Color(0xFF94003B),
     appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(
         color: Color(0xFFECE3EA),
@@ -43,6 +45,9 @@ class AppTheme {
     accentColor: Color(0xFFB03164),
     dividerColor: Color(0xFFB03164) ,
     textTheme: TextTheme(
+      headline3: GoogleFonts.lato(
+          textStyle: TextStyle(fontSize: 24.0, color:_lighterColor )
+      ),
       headline4: GoogleFonts.lato(
           textStyle: TextStyle(fontSize: 24.0, color:_lightColor )
       ),
@@ -53,6 +58,15 @@ class AppTheme {
           textStyle: TextStyle(fontSize: 32.0, color: _lightColor,)
       ),
     ),
+    sliderTheme: SliderThemeData(
+        activeTrackColor: Color(0xFFB03164),
+        thumbColor: Color(0xFFB03164),
+        inactiveTrackColor: Color(0xFFDE729D),
+        overlayColor: Color(0xFFDE729D)
+    ),
+    iconTheme: IconThemeData(
+      color: Color(0xFFECE3EA),
+    )
   );
 
 }
