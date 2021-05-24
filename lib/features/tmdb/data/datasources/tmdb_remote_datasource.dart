@@ -31,8 +31,6 @@ class TmdbRemoteDataSourceImpl implements TmdbRemoteDataSource {
   }
 
 
-
-
   @override
   Future<PersonModel> getSinglePerson(int id) async {
    final person = await _getSinglePerson(id);
@@ -108,7 +106,7 @@ class TmdbRemoteDataSourceImpl implements TmdbRemoteDataSource {
   }
 
   dynamic _getSingleMovie(int movie_id) async {
-    var endPoint = "https://api.themoviedb.org/3/person/$movie_id?api_key=$API_KEY";
+    var endPoint = "https://api.themoviedb.org/3/movie/$movie_id?api_key=$API_KEY";
     try{
       var parseUri = Uri.parse(endPoint);
 

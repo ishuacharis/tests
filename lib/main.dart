@@ -15,6 +15,7 @@ import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import 'package:tests/features/twitter/data/datasource/twitter_remoate_datasource.dart';
 import 'core/pages/my_app.dart';
 import 'features/counter/counter_observer.dart';
+import 'features/tmdb/data/model/movie_model.dart';
 import 'injection_container.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ void main() async {
   //Hive.registerAdapter(PersonAdapter());
   //await Hive.openBox("contacts");
   Hive.registerAdapter(ArtistAdapter());
+  Hive.registerAdapter(MovieModelAdapter());
   await Hive.openBox("tmdb");
   runApp(
     ProviderScope(child: MyApp(connectivity: Connectivity(),))

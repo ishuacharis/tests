@@ -57,6 +57,7 @@ class KnowForCard extends StatelessWidget {
           BlocProvider.of<NavigationBloc>(context)
           .add(NavigationPushName(route: movie_detail_Page, params: knownFor,)),
       child: Card(
+        color: Color(0xFF18010A),
         child: Container(
           padding: const EdgeInsets.all(10.0),
           margin: const EdgeInsets.only(top: 35,bottom: 35),
@@ -105,7 +106,7 @@ class KnowForCard extends StatelessWidget {
   Widget _buildTextWidget(BuildContext context, String field, String value) {
     return Container(
       margin: const EdgeInsets.only(top: 5.0 , bottom: 5.0),
-      child: Text("$field: $value", style: Theme.of(context).textTheme.headline6,),
+      child: Text("$field: $value", style: Theme.of(context).textTheme.headline5,),
     );
   }
 }

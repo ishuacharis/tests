@@ -1,38 +1,44 @@
+import 'package:hive/hive.dart';
 import 'package:tests/features/tmdb/domain/entity/movie_entity.dart';
+part 'movie_model.g.dart';
 
+@HiveType(typeId: 3)
 class MovieModel extends MovieEntity{
-  bool? adult;
+  @HiveField(0)
   String? backdropPath;
-  dynamic? belongsToCollection;
-  int? budget;
-  List<Genres>? genres;
-  String? homepage;
+  @HiveField(1)
   int? id;
+  @HiveField(2)
   String? imdbId;
+  @HiveField(3)
   String? originalLanguage;
+  @HiveField(4)
   String? originalTitle;
+  @HiveField(5)
   String? overview;
+  @HiveField(6)
   double? popularity;
-  dynamic? posterPath;
-
+  @HiveField(7)
+  String? posterPath;
+  @HiveField(8)
   String? releaseDate;
+  @HiveField(9)
   int? revenue;
+  @HiveField(10)
   int? runtime;
-  List<Spoken_languages>? spokenLanguages;
+  @HiveField(11)
   String? status;
+  @HiveField(12)
   String? tagline;
+  @HiveField(13)
   String? title;
-  bool? video;
+  @HiveField(14)
   double? voteAverage;
+  @HiveField(15)
   int? voteCount;
 
   MovieModel({
-    this.adult,
     this.backdropPath,
-    this.belongsToCollection,
-    this.budget,
-    this.genres,
-    this.homepage,
     this.id,
     this.imdbId,
     this.originalLanguage,
@@ -43,25 +49,15 @@ class MovieModel extends MovieEntity{
     this.releaseDate,
     this.revenue,
     this.runtime,
-    this.spokenLanguages,
     this.status,
     this.tagline,
     this.title,
-    this.video,
     this.voteAverage,
     this.voteCount});
 
   MovieModel.fromJson(dynamic json) {
-    adult = json["adult"];
     backdropPath = json["backdrop_path"];
-    belongsToCollection = json["belongs_to_collection"];
     budget = json["budget"];
-    if (json["genres"] != null) {
-      genres = [];
-      json["genres"].forEach((v) {
-        genres?.add(Genres.fromJson(v));
-      });
-    }
     homepage = json["homepage"];
     id = json["id"];
     imdbId = json["imdb_id"];
@@ -70,20 +66,11 @@ class MovieModel extends MovieEntity{
     overview = json["overview"];
     popularity = json["popularity"];
     posterPath = json["poster_path"];
-
     releaseDate = json["release_date"];
     revenue = json["revenue"];
     runtime = json["runtime"];
-    if (json["spoken_languages"] != null) {
-      spokenLanguages = [];
-      json["spoken_languages"].forEach((v) {
-        spokenLanguages?.add(Spoken_languages.fromJson(v));
-      });
-    }
-    status = json["status"];
     tagline = json["tagline"];
     title = json["title"];
-    video = json["video"];
     voteAverage = json["vote_average"];
     voteCount = json["vote_count"];
   }

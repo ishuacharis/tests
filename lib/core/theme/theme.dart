@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   AppTheme._();
 
-  static const _lightColor = Color(0XFF323131);
+  static const _lightColor = Color(0XFFFAFAFA);
   static const _lighterColor = Color(0XFFECE3EA);
   static const _darkColor = Color(0XFF272127);
   static final ThemeData lightTheme = ThemeData(
@@ -46,13 +46,16 @@ class AppTheme {
     dividerColor: Color(0xFFB03164) ,
     textTheme: TextTheme(
       headline3: GoogleFonts.lato(
-          textStyle: TextStyle(fontSize: 24.0, color:_lighterColor )
+          textStyle: TextStyle(fontSize: 26.0, color:_lighterColor )
       ),
       headline4: GoogleFonts.lato(
           textStyle: TextStyle(fontSize: 24.0, color:_lightColor )
       ),
+      headline5: GoogleFonts.lato(
+          textStyle: TextStyle(fontSize: 14.0, color: _lightColor,)
+      ),
       headline6: GoogleFonts.lato(
-        textStyle: TextStyle(fontSize: 14.0, color: _lightColor,)
+        textStyle: TextStyle(fontSize: 12.0, color: _lightColor,)
       ),
       bodyText2: GoogleFonts.lato(
           textStyle: TextStyle(fontSize: 32.0, color: _lightColor,)

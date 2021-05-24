@@ -106,18 +106,30 @@ class TmdbRepositoryImpl extends TmdbRepository {
 
   @override
   Future<Either<Failure, MovieModel>> getSingleMovie(int id) async{
-    try{
-      final movie  =  await tmdbRemoteDataSource.getSingleMovie(id);
-      return Right(movie);
-    }on ServerException {
-      throw Left(ServerFailure(failure: "Please check your internet settings"));
-    } on NetworkException {
-      throw Left(NetWorkFailure(failure: "Internal server error"));
-    } on InvalidFormatException {
-      throw Left(InvalidFormatFailure(failure: "Please check your data"));
-    } catch(e) {
-      print("error ${e}");
-      throw Left(UnCaughtFailure(failure: e.toString()));
+    if(await networkInfo.hasConnection) {
+      print("connection");
+      try{
+        final movie  =  await tmdbRemoteDataSource.getSingleMovie(id);
+        tmdbLocalDataSource.cacheMovie(id, movie);
+        return Right(movie);
+      }on ServerException {
+        throw Left(ServerFailure(failure: "Please check your internet settings"));
+      } on NetworkException {
+        throw Left(NetWorkFailure(failure: "Internal server error"));
+      } on InvalidFormatException {
+        throw Left(InvalidFormatFailure(failure: "Please check your data"));
+      } catch(e) {
+        print("error ${e}");
+        throw Left(UnCaughtFailure(failure: e.toString()));
+      }
+    } else{
+      print("no connection");
+      try{
+        final localMovie  =  await tmdbLocalDataSource.getLastCacheMovie(id);
+        return Right(localMovie);
+      } on CacheException{
+        throw Left(CacheFailure(failure: "Unable to cache data"));
+      }
     }
   }
 

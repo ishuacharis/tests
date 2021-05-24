@@ -13,7 +13,7 @@ class MovieEntity extends Equatable{
   String? originalTitle;
   String? overview;
   double? popularity;
-  dynamic? posterPath;
+  String? posterPath;
 
   String? releaseDate;
   int? revenue;

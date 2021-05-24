@@ -21,17 +21,17 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
 }) : getMovieUseCase = movieUseCase,
         super(MovieInitial()){
     streamSubscription =  connectionBloc.stream.listen((ConnectionState internetState) {
-      monitorInternetConnection(internetState);
+      //monitorInternetConnection(internetState);
     });
   }
 
   void monitorInternetConnection(ConnectionState internetState) {
     if(internetState is InternetConnectedState &&
         internetState.internetStatus == InternetStatus.Connected ){
-      add(GetSingleMovieEvent(isConnected: true));
+      add(SingleMovieEvent(isConnected: true));
     } else if(internetState is InternetDisconnectedState &&
         internetState.internetStatus == InternetStatus.Disconnected){
-      add(GetSingleMovieEvent(isConnected: false));
+      add(SingleMovieEvent(isConnected: false));
     }
   }
   @override
@@ -39,5 +39,15 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     MovieEvent event,
   ) async* {
     // TODO: implement mapEventToState
+
+    if(event is GetSingleMovieEvent) {
+
+      yield MovieLoading();
+      final movie = await getMovieUseCase(MovieParams(id: event.id));
+      yield movie.fold(
+              (error) => MovieError(message: error.toString()),
+              (data) => MovieLoaded(movie: data)
+      );
+    }
   }
 }
