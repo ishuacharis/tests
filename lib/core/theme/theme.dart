@@ -5,7 +5,20 @@ import 'package:google_fonts/google_fonts.dart';
 //#ECE3EA //textcolor
 class AppTheme {
   AppTheme._();
-
+  static const _darkPrimarySwatch = MaterialColor(
+      0xFF94003b, const<int, Color>{
+      50:Color(0XFF850035),
+      100:Color(0XFF76002f),
+      200:Color(0XFF680029),
+      300:Color(0XFF590023),
+      400:Color(0XFF4a001e),
+      500:Color(0XFF3b0018),
+      600:Color(0XFF2c0012),
+      700:Color(0XFF1e000c),
+      800:Color(0XFF0f0006),
+      900:Color(0XFF000000),
+  });
+  static const _darkAccentColor = Color(0xFFB03164);
   static const _lightColor = Color(0XFFFAFAFA);
   static const _lighterColor = Color(0XFFECE3EA);
   static const _darkColor = Color(0XFF272127);
@@ -35,15 +48,22 @@ class AppTheme {
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Color(0XFFEDECED),
       visualDensity: VisualDensity.adaptivePlatformDensity,
-    //primaryColor: Color(0xFF94003B),
+      primarySwatch: _darkPrimarySwatch,
+      accentColor: _darkAccentColor,
+      primaryColor: _darkAccentColor,
+      dividerColor: Color(0xFFB03164),
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: _darkPrimarySwatch,
+        accentColor: _darkAccentColor,
+        cardColor:Color(0xFF94003B)
+      ),
     appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(
         color: Color(0xFFECE3EA),
       ),
       backgroundColor: Color(0xFF94003B),
     ),
-    accentColor: Color(0xFFB03164),
-    dividerColor: Color(0xFFB03164) ,
+
     textTheme: TextTheme(
       headline3: GoogleFonts.lato(
           textStyle: TextStyle(fontSize: 26.0, color:_lighterColor )

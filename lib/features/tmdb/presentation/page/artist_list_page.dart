@@ -11,13 +11,14 @@ class ArtistListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
         create: (_) => s1<PeopleBloc>()..add(GetAllPeopleEvent()),
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Movies"),
+            title: Text("Artists"),
           ),
-          body:buildBody(context),
+          body: buildBody(context),
           floatingActionButton: Builder(
             builder: (context) => FloatingActionButton(
                 child: Icon(Icons.add),
@@ -29,40 +30,45 @@ class ArtistListPage extends StatelessWidget {
   }
 
   BlocBuilder buildBody(BuildContext context) {
-
     return BlocBuilder<PeopleBloc,PeopleState>(
-          builder: (context,state) {
-            if(state is PeopleLoaded && state.isConnected) {
-              return ArtistListWidget(
-                  artists: state.people.results
-              );
-            }
-            else if(state is PeopleError) {
-              return Center(child: Text(state.message));
-            }else if(state is PeopleLoading) {
-              return Center(child: CircularProgressIndicator());
-            }
-            return Center(child: Text("hello"));
-          },
-        );
+            builder: (context,state) {
+              if(state is PeopleLoaded && state.isConnected) {
+                return ArtistListWidget(
+                      artists: state.people.results
+                  );
+              }
+              else if(state is PeopleError) {
+                return Center(child: Text(state.message));
+              }else if(state is PeopleLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return Center(child: Text("hello"));
+            },
+          );
   }
 }
 
 class ArtistListWidget extends StatelessWidget {
   final List artists;
   ArtistListWidget({ required this.artists});
-
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      hoverThickness: 32,
-      child: ListView.builder(
-          itemCount: artists.length,
-          itemBuilder: (context, index) => ArtistListTileWidget(
-              artist: artists[index],
-            voidCallback: () => BlocProvider.of<NavigationBloc>(context)
-                .add(NavigationPushName(route: artist_detail_page, params: artists[index])),
-          )
+    final refresh = BlocProvider.of<PeopleBloc>(context);
+    return RefreshIndicator(
+      key: _refreshIndicatorKey,
+      onRefresh: () async => refresh.add(GetAllPeopleEvent(isConnected: true)),
+      child: Scrollbar(
+        hoverThickness: 32,
+        child: ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemCount: artists.length,
+            itemBuilder: (context, index) => ArtistListTileWidget(
+                artist: artists[index],
+              voidCallback: () => BlocProvider.of<NavigationBloc>(context)
+                  .add(NavigationPushName(route: artist_detail_page, params: artists[index])),
+            )
+        ),
       ),
     );
   }

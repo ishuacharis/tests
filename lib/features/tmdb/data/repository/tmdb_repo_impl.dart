@@ -85,6 +85,35 @@ class TmdbRepositoryImpl extends TmdbRepository {
     }
   }
 
+  Future<MovieModel> getSingleMovieRiverPod(int id) async {
+
+    if(await networkInfo.hasConnection) {
+      print("connection");
+      try{
+        final movie  =  await tmdbRemoteDataSource.getSingleMovie(id);
+        tmdbLocalDataSource.cacheMovie(id, movie);
+        return movie;
+      }on ServerException {
+        throw ServerFailure(failure: "Please check your internet settings");
+      } on NetworkException {
+        throw NetWorkFailure(failure: "Internal server error");
+      } on InvalidFormatException {
+        throw InvalidFormatFailure(failure: "Please check your data");
+      } catch(e) {
+        print("error ${e}");
+        throw UnCaughtFailure(failure: e.toString());
+      }
+    } else{
+      print("no connection");
+      try{
+        final localMovie  =  await tmdbLocalDataSource.getLastCacheMovie(id);
+        return localMovie;
+      } on CacheException{
+        throw CacheFailure(failure: "Unable to cache data");
+      }
+    }
+  }
+
   @override
   Future<Either<Failure, PersonModel>> getSinglePerson(int person_id) async{
 

@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import '../routes/routes.dart';
+import "package:http/http.dart" as http;
 
 class HomePage extends StatelessWidget {
   final String title;
 
+  void _fetch() async {
+    print("hey");
+
+    final http.Client client = http.Client();
+
+    final response = await client.get(Uri.parse("http://10.0.2.2:8000/api/gigs/all"));
+
+    print(response.body);
+    print(response.headers);
+  }
   const HomePage({required this.title});
   @override
   Widget build(BuildContext context) {
@@ -41,9 +52,14 @@ class HomePage extends StatelessWidget {
                   },
                   child: Text("Counter Stream")
               ),
-              ElevatedButton(onPressed: () => Navigator.of(context).pushNamed(counter_page),
+              ElevatedButton(
+                  onPressed: () => Navigator.of(context).pushNamed(counter_page),
                   child: Text("Movies")
-              )
+              ),
+              ElevatedButton(
+                  onPressed: () => _fetch(),
+                  child: Text("Network")
+              ),
             ],
           ),
         ),

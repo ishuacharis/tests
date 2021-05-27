@@ -10,5 +10,6 @@ abstract class TmdbRepository {
   Future<Either<Failure, PersonModel>> getSinglePerson(int id);
   Future<Either<Failure, MovieModel>> getSingleMovie(int id);
   Future<Artist> getPeopleRiverPod();
+  Future<MovieModel> getSingleMovieRiverPod(int id);
 
 }

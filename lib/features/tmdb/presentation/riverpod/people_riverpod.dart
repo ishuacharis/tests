@@ -4,6 +4,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:tests/core/network/network_info.dart';
 import 'package:tests/features/tmdb/data/datasources/tmdb_local_data_source.dart';
 import 'package:tests/features/tmdb/data/datasources/tmdb_remote_datasource.dart';
+import 'package:tests/features/tmdb/data/model/movie_model.dart';
 import 'package:tests/features/tmdb/data/repository/tmdb_repo_impl.dart';
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +19,19 @@ class Result {
   final Artist artist;
   Result({ required this.artist, this.isConnected = false });
 }
+
+class Movie {
+  final int id;
+  Movie({ required this.id });
+}
+
+class MovieNotifier extends StateNotifier<Movie> {
+  MovieNotifier() : super(Movie(id: 0));
+}
+
+final movieProvider  = StateNotifierProvider<MovieNotifier, Movie>((ref){
+  return MovieNotifier();
+});
 //
 /// This StreamProvider listens to change in internet connection status (e.g connected or disconnected)
 ///
@@ -97,4 +111,18 @@ final artistInternetProvider  =  FutureProvider.autoDispose<Result>((ref) async 
 
   return Future.value(Result(artist:a ));
   return Result(artist: a);
+});
+
+final movieFutureProvider  =  FutureProvider.family.autoDispose<MovieModel, int>((ref, id) {
+  final http.Client client = http.Client();
+  final remoteDataSource  = TmdbRemoteDataSourceImpl(client: client);
+  final localDataSource  = TmdbLocalDataSourceImpl();
+  final InternetConnectionChecker internetConnectionChecker = InternetConnectionChecker();
+  final netWorksInfo  = NetworkInfoImpl(internetConnectionChecker: internetConnectionChecker);
+  final repo =  TmdbRepositoryImpl(
+      tmdbRemoteDataSource: remoteDataSource,
+      tmdbLocalDataSource: localDataSource,
+      networkInfo: netWorksInfo);
+  final movie =  repo.getSingleMovieRiverPod(id);
+  return movie;
 });

@@ -13,7 +13,7 @@ class RiverPodArtistListPage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Movies"),
+          title: Text("Riverpod Movies"),
         ),
         body: Center(
           child: futureAsyncValue.when(
