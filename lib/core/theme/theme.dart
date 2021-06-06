@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 //#94003B //primary
@@ -47,7 +49,7 @@ class AppTheme {
   );
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Color(0XFFEDECED),
-      visualDensity: VisualDensity.adaptivePlatformDensity,
+      visualDensity: Platform.isAndroid ? VisualDensity.adaptivePlatformDensity : VisualDensity.standard ,
       primarySwatch: _darkPrimarySwatch,
       accentColor: _darkAccentColor,
       primaryColor: _darkAccentColor,

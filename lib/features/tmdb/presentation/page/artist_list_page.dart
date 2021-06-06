@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
@@ -17,6 +19,12 @@ class ArtistListPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: Text("Artists"),
+            actions: [
+              IconButton(onPressed: () {
+                showSearch(context: context, delegate: ArtistSearch());
+              },
+                  icon: Icon(Icons.search))
+            ]
           ),
           body: buildBody(context),
           floatingActionButton: Builder(
@@ -74,4 +82,82 @@ class ArtistListWidget extends StatelessWidget {
   }
 }
 
+class ArtistSearch extends SearchDelegate<String> {
 
+  final artists = [
+    'vin', 'ben', 'gal Galdot','rock'
+  ];
+
+  final recentArtists = [
+    'vin', 'ben', 'gal Galdot'
+  ];
+  final recentCities = [];
+
+ @override
+  ThemeData appBarTheme(BuildContext context) {
+    assert(context != null);
+    final ThemeData themeData = Theme.of(context);
+    return themeData.copyWith(
+      appBarTheme: AppBarTheme(
+        color: Color(0xFF94003B),
+        textTheme: TextTheme(
+          headline6: TextStyle(color: Colors.grey,fontSize: 34.0)
+        )
+      )
+    );
+  }
+
+
+  @override
+  String? get searchFieldLabel => "Artists";
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(onPressed: (){
+        query = '';
+      }, icon: Icon(Icons.clear))
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+      return IconButton(onPressed: (){
+        close(context, query);
+      }, icon: AnimatedIcon(
+        progress: transitionAnimation, icon: AnimatedIcons.menu_arrow,
+      ));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestionList = query.isEmpty ? recentArtists :
+    artists.where((artist) => artist.startsWith(query)).toList();
+    
+    return ListView.builder(
+      itemCount: suggestionList.length,
+        itemBuilder: (context,index) => ListTile(
+          onTap: () {
+            showResults(context);
+          },
+      leading: Icon(Icons.people),
+      title: RichText(text: TextSpan(
+        text: suggestionList[index].substring(0, query.length),
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        children: [
+          TextSpan(
+            text: suggestionList[index].substring(query.length),
+            style: TextStyle(color: Colors.grey)
+          )
+        ]
+      )),
+    ));
+  }
+
+}
