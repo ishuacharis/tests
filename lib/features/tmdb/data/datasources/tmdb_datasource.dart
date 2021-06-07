@@ -6,6 +6,8 @@ abstract class TmdbRemoteDataSource {
 
   Future<Artist> getAllPeople();
   Future<PersonModel> getSinglePerson(int id);
+  Future<PersonModel> getSearchPerson(String searchText);
+  Future<MovieModel> getSearchMovie(String searchText);
   Future<MovieModel> getSingleMovie(int id);
   Future<Artist> getAllPeopleRiverPod();
 
