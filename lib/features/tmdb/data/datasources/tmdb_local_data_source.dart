@@ -11,6 +11,7 @@ abstract class TmdbLocalDataSource {
   Future<void> cacheArtist(People artistCache);
   Future<MovieModel> getLastCacheMovie(int id);
   Future<void> cacheMovie(int key, MovieEntity movieCache);
+
 }
 
 class TmdbLocalDataSourceImpl extends TmdbLocalDataSource {

@@ -162,4 +162,38 @@ class TmdbRepositoryImpl extends TmdbRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, MovieModel>> getSearchMovies(String searchText) async {
+    try {
+      final movie = await tmdbRemoteDataSource.getSearchMovie(searchText);
+      return Right(movie);
+    } on ServerException {
+      throw Left(ServerFailure(failure: "Please check your internet settings"));
+    } on NetworkException {
+      throw Left(NetWorkFailure(failure: "Internal server error"));
+    } on InvalidFormatException {
+      throw Left(InvalidFormatFailure(failure: "Please check your data"));
+    } catch(e) {
+      print("error ${e}");
+      throw Left(UnCaughtFailure(failure: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PersonModel>> getSearchArtist(String searchText) async {
+    try {
+      final artist = await tmdbRemoteDataSource.getSearchPerson(searchText);
+      return Right(artist);
+    } on ServerException {
+      throw Left(ServerFailure(failure: "Please check your internet settings"));
+    } on NetworkException {
+      throw Left(NetWorkFailure(failure: "Internal server error"));
+    } on InvalidFormatException {
+      throw Left(InvalidFormatFailure(failure: "Please check your data"));
+    } catch(e) {
+      print("error ${e}");
+      throw Left(UnCaughtFailure(failure: e.toString()));
+    }
+  }
+
 }
