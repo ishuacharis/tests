@@ -95,7 +95,7 @@ class ArtistSearch extends SearchDelegate<String> {
 
  @override
   ThemeData appBarTheme(BuildContext context) {
-    assert(context != null);
+
     final ThemeData themeData = Theme.of(context);
     return themeData.copyWith(
       appBarTheme: AppBarTheme(
@@ -109,7 +109,7 @@ class ArtistSearch extends SearchDelegate<String> {
 
 
   @override
-  String? get searchFieldLabel => "Artists";
+  String? get searchFieldLabel => "Search Artists";
 
   @override
   List<Widget> buildActions(BuildContext context) {
