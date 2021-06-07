@@ -17,11 +17,13 @@ import 'package:tests/features/auth/domain/usecases/auth_register_usecase.dart';
 import 'package:tests/features/counter/presentation/bloc/counter_bloc.dart';
 import 'package:tests/features/tmdb/data/datasources/tmdb_local_data_source.dart';
 import 'package:tests/features/tmdb/domain/repository/TmdbRepository.dart';
+import 'package:tests/features/tmdb/domain/usecase/get_movie_search_usecase.dart';
 import 'package:tests/features/tmdb/domain/usecase/get_people_usecase.dart';
 import 'package:tests/features/tmdb/domain/usecase/get_single_movie_usecase.dart';
 import 'package:tests/features/tmdb/domain/usecase/get_single_person_usecase.dart';
 import 'package:tests/features/tmdb/presentation/bloc/movie_bloc.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
+import 'package:tests/features/tmdb/presentation/bloc/search_movie_bloc.dart';
 import 'package:tests/features/twitter/data/datasource/twitter_remoate_datasource.dart';
 import 'package:tests/features/twitter/data/repository/get_user_usecase.dart';
 import 'package:tests/features/twitter/data/repository/tweet_repository_impl.dart';
@@ -65,6 +67,7 @@ Future<void> init() async {
       peopleUseCase: s1(), internetBloc: s1()) );
   s1.registerFactory(() => NavigationBloc(s1()) );
   s1.registerFactory(() => MovieBloc(connectionBloc: s1(), movieUseCase: s1()) );
+  s1.registerFactory(() => SearchMovieBloc( searchMovieUseCase: s1() ) );
 
   s1.registerLazySingleton<TmdbRepository>(() => TmdbRepositoryImpl(
       tmdbRemoteDataSource: s1(),
@@ -86,6 +89,7 @@ Future<void> init() async {
   s1.registerLazySingleton(() => AuthLoginUseCase(authRepository: s1()));
   s1.registerLazySingleton(() => AuthRegisterUseCase(authRepository: s1()));
   s1.registerLazySingleton(() => GetMovieUseCase(tmdbRepository: s1()));
+  s1.registerLazySingleton(() => GetSearchMovieUseCase(tmdbRepository: s1()));
 
   //datasources
     s1.registerLazySingleton<TmdbRemoteDataSource>(() =>  TmdbRemoteDataSourceImpl(client: s1()) );

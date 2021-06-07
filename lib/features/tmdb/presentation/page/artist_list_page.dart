@@ -5,11 +5,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tests/core/navigation/bloc/navigation_bloc.dart';
 import 'package:tests/core/routes/routes.dart';
 import 'package:tests/features/tmdb/presentation/bloc/people_bloc.dart';
+import 'package:tests/features/tmdb/presentation/bloc/search_movie_bloc.dart';
 import 'package:tests/features/tmdb/presentation/widget/artist_list_tile_widget.dart';
 
 import '../../../../injection_container.dart';
 
-class ArtistListPage extends StatelessWidget {
+class ArtistListPage extends StatefulWidget {
+
+  @override
+  _ArtistListPageState createState() => _ArtistListPageState();
+}
+
+class _ArtistListPageState extends State<ArtistListPage> {
+  late SearchMovieBloc searchMovieBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    searchMovieBloc = s1<SearchMovieBloc>();
+  }
+
+  void dispose() {
+    searchMovieBloc?.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +40,8 @@ class ArtistListPage extends StatelessWidget {
             title: Text("Artists"),
             actions: [
               IconButton(onPressed: () {
-                showSearch(context: context, delegate: ArtistSearch());
+                showSearch(context: context,
+                    delegate: ArtistSearch( searchMovieBloc: searchMovieBloc) );
               },
                   icon: Icon(Icons.search))
             ]
@@ -83,6 +103,10 @@ class ArtistListWidget extends StatelessWidget {
 }
 
 class ArtistSearch extends SearchDelegate<String> {
+
+  final SearchMovieBloc searchMovieBloc;
+
+   ArtistSearch({ required this.searchMovieBloc });
 
   final artists = [
     'vin', 'ben', 'gal Galdot','rock'
