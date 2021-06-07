@@ -5,6 +5,7 @@ import 'package:tests/core/network/network_info.dart';
 import 'package:tests/features/tmdb/data/datasources/tmdb_datasource.dart';
 import 'package:tests/features/tmdb/data/datasources/tmdb_local_data_source.dart';
 import 'package:tests/features/tmdb/data/model/movie_model.dart';
+import 'package:tests/features/tmdb/data/model/movies_model.dart';
 import 'package:tests/features/tmdb/data/model/person_model.dart';
 
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
@@ -163,7 +164,7 @@ class TmdbRepositoryImpl extends TmdbRepository {
   }
 
   @override
-  Future<Either<Failure, MovieModel>> getSearchMovies(String searchText) async {
+  Future<Either<Failure, MoviesModel>> getSearchMovies(String searchText) async {
     try {
       final movie = await tmdbRemoteDataSource.getSearchMovie(searchText);
       return Right(movie);
@@ -180,7 +181,7 @@ class TmdbRepositoryImpl extends TmdbRepository {
   }
 
   @override
-  Future<Either<Failure, PersonModel>> getSearchArtist(String searchText) async {
+  Future<Either<Failure, Artist>> getSearchArtist(String searchText) async {
     try {
       final artist = await tmdbRemoteDataSource.getSearchPerson(searchText);
       return Right(artist);

@@ -4,6 +4,7 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
 import 'package:tests/features/tmdb/data/datasources/tmdb_datasource.dart';
 import 'package:tests/features/tmdb/data/model/movie_model.dart';
+import 'package:tests/features/tmdb/data/model/movies_model.dart';
 import 'package:tests/features/tmdb/data/model/person_model.dart';
 import 'package:tests/features/tmdb/domain/entity/artist_entity.dart';
 import '../../../../core/exceptions/exception.dart';
@@ -44,16 +45,16 @@ class TmdbRemoteDataSourceImpl implements TmdbRemoteDataSource {
   }
 
   @override
-  Future<MovieModel> getSearchMovie(String searchText) async {
+  Future<MoviesModel> getSearchMovie(String searchText) async {
     final movie = await _getSearchMovie(searchText);
-    return MovieModel.fromJson(movie);
+    return MoviesModel.fromJson(movie);
   }
 
 
   @override
-  Future<PersonModel> getSearchPerson(String searchText) async {
-    final artist  = await _getSearchPerson(searchText);
-    return PersonModel.fromJson(artist);
+  Future<Artist> getSearchPerson(String searchText) async {
+    final artists = await _getSearchPerson(searchText);
+    return Artist(results: artists);
   }
 
 
